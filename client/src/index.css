@@ -1,0 +1,22 @@
+.navbar-collapse {
+    justify-content: flex-end;
+}
+.loginForm {
+    margin: 10px;
+    display: inline-block;
+    min-height: 355px;
+    padding: 30px;
+}
+.loginForm {
+    text-align: left;
+}
+.loginTitle {
+    text-align: center;
+}
+.nav-tabs {
+    border: none;
+    display: inline-flex;
+}
+.login {
+    text-align: center;
+}
