@@ -1,22 +1,110 @@
 .navbar-collapse {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 .loginForm {
-    margin: 10px;
-    display: inline-block;
-    min-height: 355px;
-    padding: 30px;
+  margin: 10px;
+  display: inline-block;
+  min-height: 355px;
+  padding: 30px;
 }
 .loginForm {
-    text-align: left;
+  text-align: left;
 }
 .loginTitle {
-    text-align: center;
+  text-align: center;
 }
 .nav-tabs {
-    border: none;
-    display: inline-flex;
+  border: none;
+  display: inline-flex;
 }
 .login {
-    text-align: center;
+  text-align: center;
+}
+.profileInfo {
+  padding: 30px 0;
+  margin: 0 auto;
+  width: 300px;
+}
+.profileInfo span {
+  font-weight: bold;
+}
+.usersTable {
+  margin: 10px 30px;
+  overflow: scroll;
+}
+.errorPage {
+  text-align: center;
+}
+.errorPage h1 {
+  margin-top: 50px;
+  font-size: 80px;
+}
+.errorPage h4 {
+  font-size: 40px;
+}
+.searchLine {
+  width: 50%;
+  display: inline-block;
+}
+.searchPage {
+  text-align: center;
+}
+.searchLine {
+  margin: 50px 0;
+}
+.searchLine input {
+  border: 1px solid grey;
+  width: 80%;
+  padding: 10px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  transition: 0.2s;
+}
+.searchLine input:focus,
+.searchLine button:focus {
+  outline: none;
+  transition: 0.2s;
+}
+.searchLine button {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  width: 20%;
+  padding: 11px;
+  background: grey;
+  color: white;
+  border: none;
+}
+.searchResults,
+.mainBooks {
+  display: flex;
+  padding: 20px;
+  justify-content: space-around;
+}
+.card-body {
+  text-align: left;
+}
+.card {
+  display: inline-block;
+}
+.card img {
+  height: 200px;
+}
+.tagsCloud {
+  margin: 20px;
+  padding: 20px;
+  background: yellowgreen;
+  border-radius: 15px;
+  word-wrap: break-word;
+}
+.tagsCloud h4 {
+  margin: 0;
+  margin-right: 10px;
+}
+.tagsCloud span {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+.tagsCloud .tag {
+  display: inline;
+  margin-right: 10px;
 }

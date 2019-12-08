@@ -1,8 +1,7 @@
-import { GET_USERS, USER_LOADING } from "../actions/types";
+import { GET_USERS } from "../actions/types";
 
 const initialState = {
-  users: [],
-  loading: false
+  users: []
 };
 
 export default (state = initialState, action) => {
@@ -10,13 +9,7 @@ export default (state = initialState, action) => {
     case GET_USERS:
       return {
         ...state,
-        users: action.payload,
-        loading: false
-      };
-    case USER_LOADING:
-      return {
-        ...state,
-        loading: true
+        users: action.payload
       };
     default:
       return state;
