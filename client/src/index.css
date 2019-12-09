@@ -29,7 +29,6 @@
   font-weight: bold;
 }
 .usersTable {
-  margin: 10px 30px;
   overflow: scroll;
 }
 .errorPage {
@@ -75,7 +74,8 @@
   border: none;
 }
 .searchResults,
-.mainBooks {
+.mainBooks,
+.userFanfiksList {
   display: flex;
   padding: 20px;
   justify-content: space-around;
@@ -107,4 +107,43 @@
 .tagsCloud .tag {
   display: inline;
   margin-right: 10px;
+}
+.tableControls button, 
+.showHideUsertable ,
+.createwFanfik {
+  background: grey;
+  color: white;
+  border: none;
+  margin-right: 10px;
+  border-radius: 5px;
+  padding: 7px;
+  margin-bottom: 10px;
+  transition: 0.1s;
+  transform: scale(1);
+}
+.tableControls button:focus,
+.showHideUsertable:focus,
+.createwFanfik:focus {
+  outline: none;
+}
+.tableControls button:active,
+.showHideUsertable:active,
+.createwFanfik:active {
+  transform: scale(1.1);
+  transition: 0.1s;
+}
+.tableUsersHide, 
+.table {
+  display: none;
+}
+.tableUsersShow, 
+.table {
+  display: block
+}
+
+.profile {
+  margin: 10px 30px;
+}
+.fanfiksSection {
+  padding: 10px 0;
 }

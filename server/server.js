@@ -22,6 +22,7 @@ app.use("/api/reg", reg);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
 
-const port = 5002;
+const port = 8080;
 
 app.listen(port, () => console.log(`Server started on ${port}`));
+

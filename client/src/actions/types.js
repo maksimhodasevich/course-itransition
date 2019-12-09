@@ -10,3 +10,6 @@ export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const GET_USERS = "GET_USERS";
+export const DELETE_USERS = "DELETE_USERS";
+export const APPOINT_ADMIN = "APPOINT_ADMIN";
+export const REMOVE_ADMIN = "REMOVE_ADMIN";

@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
-import Error from "./pages/Error";
+import ErrorP from "./pages/Error";
 
 import "./../index.css";
 
@@ -29,7 +29,7 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/search" component={Search} />
             {isAuth ? <Route exact path="/profile" component={Profile} /> : ""}
-            <Route path="*" component={Error} />
+            <Route path="*" component={ErrorP} />
           </Switch>
         </BrowserRouter>
       </div>

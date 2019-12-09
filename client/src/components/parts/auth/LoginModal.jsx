@@ -64,10 +64,9 @@ class LoginModal extends React.Component {
     const { email, password } = this.state;
 
     const user = {
-      email, 
+      email,
       password
     };
-
 
     //attempt to login
     this.props.login(user);
