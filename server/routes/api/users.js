@@ -15,7 +15,7 @@ router.get("/", auth, (req, res) => {
 // @route   DELETE api/users
 // @desc    Delete checked users (for admin)
 // @access  Private
-router.post("/", (req, res) => {
+router.delete("/", (req, res) => {
   console.log("Запрос пришел с клиента");
   const IDs = req.body.ids;
   let promises = IDs.map(async userID => {

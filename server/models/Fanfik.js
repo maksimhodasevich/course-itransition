@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FanfikSchema = new Schema({
-  name: {
+  userID: {
+    type: String,
+    required: true
+  },
+  fanfikName: {
     type: String,
     required: true
   },
@@ -10,15 +14,16 @@ const FanfikSchema = new Schema({
     type: String,
     required: true
   },
-  genre: {
+  gener: {
     type: String,
     required: true
   },
   tags: {
-    type: String,
+    type: Array,
   },
   rating: {
     type: Number,
+    default: 0
   },
   comments: {
     type: Array

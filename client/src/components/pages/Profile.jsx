@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import UsersTable from "../parts/UsersTable";
+import CreateFanfik from '../parts/CreateFanfik';
+import UserFanfiks from '../parts/UserFanfiks';
+
 
 import store from "../../store";
 import { loadUser } from "../../actions/authActions";
@@ -37,53 +41,8 @@ class Profile extends React.Component {
           {user ? user.admin ? <UsersTable /> : "" : ""}
 
           <div className="fanfiksSection">
-            <h1>Fanfiks</h1>
-            <button className="createwFanfik">Create fanfik</button>
-
-            <div className="userFanfiksList col-12">
-              <div className="card col-3">
-                <img
-                  src="http://www.thesmallbig.com/css/img/thesmallbig-book-smaller.png"
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Book title</h5>
-                  <p className="card-text">
-                    Some quick example text to build on the Book title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-              <div className="card col-3">
-                <img
-                  src="http://www.thesmallbig.com/css/img/thesmallbig-book-smaller.png"
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Book title</h5>
-                  <p className="card-text">
-                    Some quick example text to build on the Book title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-              <div className="card col-3">
-                <img
-                  src="http://www.thesmallbig.com/css/img/thesmallbig-book-smaller.png"
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body">
-                  <h5 className="card-title">Book title</h5>
-                  <p className="card-text">
-                    Some quick example text to build on the Book title and make
-                    up the bulk of the card's content.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <CreateFanfik />
+            <UserFanfiks />
           </div>
         </section>
       </>

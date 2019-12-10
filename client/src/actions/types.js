@@ -13,3 +13,8 @@ export const GET_USERS = "GET_USERS";
 export const DELETE_USERS = "DELETE_USERS";
 export const APPOINT_ADMIN = "APPOINT_ADMIN";
 export const REMOVE_ADMIN = "REMOVE_ADMIN";
+
+export const CREATE_FANFIK_SUCCESS = "CREATE_FANFIK_SUCCESS";
+export const GET_FANFIKS = "GET_FANFIKS";
+
+

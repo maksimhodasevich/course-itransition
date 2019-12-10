@@ -133,14 +133,15 @@
   transition: 0.1s;
 }
 .tableUsersHide, 
-.table {
+.table ,
+.createFanfikHide {
   display: none;
 }
 .tableUsersShow, 
-.table {
+.table ,
+.createFanfikShow {
   display: block
 }
-
 .profile {
   margin: 10px 30px;
 }

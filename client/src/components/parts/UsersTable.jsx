@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUsers, deleteUsers, setAdmin } from "../../actions/userActions";
+import { getUsers, deleteUsers } from "../../actions/userActions";
 
 class UsersTable extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class UsersTable extends React.Component {
     };
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.deleteUsersList = this.deleteUsersList.bind(this);
-    this.showUsersList = this.showUsersList.bind(this);
+    this.handleDisplaying = this.handleDisplaying.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +35,7 @@ class UsersTable extends React.Component {
     this.props.deleteUsers();
   }
 
-  showUsersList() {
+  handleDisplaying() {
     this.setState({isOpen: !this.state.isOpen});
     this.state.isOpen ? this.setState({className: "tableUsersHide"}) : this.setState({className: "tableUsersShow"});
   }
@@ -86,7 +86,7 @@ class UsersTable extends React.Component {
     return (
       <div className="usersTable">
         <h1>Users Table</h1>
-        <button className="showHideUsertable" onClick={this.showUsersList}>Show Users</button>
+        <button className="showHideUsertable" onClick={this.handleDisplaying}>Show Users</button>
         {users ? table : ""}
       </div>
     );
