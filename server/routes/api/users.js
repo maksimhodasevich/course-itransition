@@ -14,27 +14,38 @@ router.get("/", auth, (req, res) => {
 
 // @route   DELETE api/users
 // @desc    Delete checked users (for admin)
-// @access  Private
+// @access  Private (for admin)
 router.delete("/", (req, res) => {
-  console.log("Запрос пришел с клиента");
-  const IDs = req.body.ids;
+  const IDs = req.query.ids;
   let promises = IDs.map(async userID => {
     return User.findOneAndDelete({ _id: userID }).then(() => {
       return userID;
     });
   });
-  Promise.all(promises).then(results => {
-    console.log(results);
-    res.send("all deleted");
+  Promise.all(promises).then(() => {
+    res.sendStatus(200);
     return;
   });
 });
 
-// router.post("/", auth, (req, res) => {
-//   console.log(req);
-//   // User.find()
-//   //   .select("-password")
-//   //   .then(users => res.json(users));
-// });
+// @route   PUT api/users
+// @desc    Appoint/remove admin
+// @access  Private
+router.put("/", auth, (req, res) => {
+  const value = req.body.value;
+  const IDs = req.body.users;
+
+  let promises = IDs.map(async userID => {
+    return User.update({ _id: userID }, { $set: { admin: value } }).then(() => {
+      return userID;
+    });
+  });
+  Promise.all(promises).then(() => {
+    User.find()
+    .select("-password")
+    .then(users => res.json(users));
+    return;
+  });
+});
 
 module.exports = router;

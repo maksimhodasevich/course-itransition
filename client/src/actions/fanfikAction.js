@@ -3,6 +3,7 @@ import { GET_FANFIKS } from "../actions/types";
 import { returnErrors } from "./errorActions";
 
 export const createFanfik = ({
+  userName,
   userID,
   fanfikName,
   description,
@@ -10,6 +11,7 @@ export const createFanfik = ({
   tags
 }) => (dispatch, getState) => {
   const body = JSON.stringify({
+    userName,
     userID,
     fanfikName,
     description,
@@ -28,7 +30,6 @@ export const createFanfik = ({
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
-    
 };
 
 export const getFanfik = () => (dispatch, getState) => {
@@ -45,7 +46,6 @@ export const getFanfik = () => (dispatch, getState) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
-
 
 export const tokenConfig = getState => {
   const token = getState().auth.token;

@@ -2,9 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import UsersTable from "../parts/UsersTable";
-import CreateFanfik from '../parts/CreateFanfik';
-import UserFanfiks from '../parts/UserFanfiks';
-
+import CreateFanfik from "../parts/CreateFanfik";
+import UserFanfiks from "../parts/UserFanfiks";
 
 import store from "../../store";
 import { loadUser } from "../../actions/authActions";
@@ -51,7 +50,6 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  entireState: state,
   isAuth: state.auth.isAuth,
   user: state.auth.user
 });

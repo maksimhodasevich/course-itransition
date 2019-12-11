@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createFanfik, getFanfik } from "../../actions/fanfikAction";
+// import { getUsers } from "../../actions/userActions";
+
 
 class CreateFanfik extends React.Component {
   constructor(props) {
@@ -9,22 +11,24 @@ class CreateFanfik extends React.Component {
       checked: [],
       isOpen: false,
       className: "createFanfikHide",
+      userName: "",
       userIDforFanfik: "",
       fanfikName: "",
       description: "",
       gener: "fantasy",
       tags: []
     };
-    this.handleDisplaying = this.handleDisplaying.bind(this);
-    this.onChangeInput = this.onChangeInput.bind(this);
   }
 
   componentDidMount() {
     this.props.getFanfik();
-    this.setState({userIDforFanfik: this.props.isAuth.user._id})
+    setTimeout(() => {
+      this.setState({userName: this.props.isAuth.user.name});
+      this.setState({userIDforFanfik: this.props.isAuth.user._id});
+    }, 100);
   }
 
-  handleDisplaying() {
+  handleDisplaying = () => {
     this.setState({ isOpen: !this.state.isOpen });
     this.state.isOpen
       ? this.setState({ className: "createFanfikHide" })
@@ -34,6 +38,15 @@ class CreateFanfik extends React.Component {
   onChangeInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
+  handleCreatorName = e => {
+    this.onChangeInput(e);
+    const user = this.props.users.filter(user => user._id === e.target.value);
+    if(user[0]) {
+      this.setState({userName: user[0].name });
+    }
+  }
+
   onChangeCheckbox = e => {
     const tagsArray = this.state.tags;
     if (tagsArray.indexOf(e.target.value) >= 0) {
@@ -43,9 +56,11 @@ class CreateFanfik extends React.Component {
     }
     this.setState({ tags: tagsArray });
   };
+
   createFanfik = e => {
     e.preventDefault();
     const newFanfik = {
+      userName: this.state.userName,
       userID: this.state.userIDforFanfik,
       fanfikName: this.state.fanfikName,
       description: this.state.description,
@@ -66,7 +81,7 @@ class CreateFanfik extends React.Component {
           users table
         </small>
         <input
-          onChange={this.onChangeInput}
+          onChange={this.handleCreatorName}
           name="userIDforFanfik"
           type="text"
           className="form-control"
@@ -168,7 +183,8 @@ class CreateFanfik extends React.Component {
 
 const mapStateToProps = state => ({
   isAuth: state.auth,
-  fanfiks: state.fanfik.fanfik
+  fanfiks: state.fanfik.fanfik,
+  users: state.user.users
 });
 
 export default connect(mapStateToProps, { createFanfik, getFanfik })(

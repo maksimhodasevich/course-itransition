@@ -12,6 +12,7 @@ class Home extends React.Component {
         <div className="card-body">
           <h5 className="card-title">Name: {fanfik.fanfikName}</h5>
           <p className="card-text">Discription: {fanfik.description}</p>
+          <p className="card-text">Author: {fanfik.userName}</p>
           <p>Gener: {fanfik.gener}</p>
           <p>Tags: {fanfik.tags.join(", ")}</p>
           <p>Rating: {fanfik.rating}</p>
@@ -42,7 +43,6 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuth: state.auth,
   fanfiks: state.fanfik.fanfik
 });
 

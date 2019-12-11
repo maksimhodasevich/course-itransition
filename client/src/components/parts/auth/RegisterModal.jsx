@@ -31,6 +31,7 @@ class RegisterModal extends React.Component {
   //поменять эту функцию на что-то
   componentDidUpdate(prevProps) {
     const { error, isAuth } = this.props;
+    // console.log(error);
     if (error !== prevProps.error) {
       //check for register error
       if (error.id === "REGISTER_FAIL") {

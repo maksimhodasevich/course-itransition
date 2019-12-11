@@ -8,14 +8,13 @@ const Fanfik = require("../../models/Fanfik");
 // @access  Private
 router.post("/", auth, (req, res) => {
   const fanfik = new Fanfik({
+    userName: req.body.userName,
     userID: req.body.userID,
     fanfikName: req.body.fanfikName,
     description: req.body.description,
     gener: req.body.gener,
     tags: req.body.tags
   });
-  // console.log(fanfik);
-
   fanfik.save().then(() => {
     Fanfik.find().then(allFanfiks => {
       res.send(allFanfiks);

@@ -7,10 +7,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_FANFIK_SUCCESS:
-      return {
-        ...state,
-        fanfik: action.payload
-      };
     case GET_FANFIKS:
       return {
         ...state,

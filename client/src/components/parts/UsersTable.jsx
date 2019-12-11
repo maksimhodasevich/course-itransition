@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUsers, deleteUsers } from "../../actions/userActions";
+import { getUsers, deleteUsers, modifyUsers } from "../../actions/userActions";
 
 class UsersTable extends React.Component {
   constructor(props) {
@@ -10,45 +10,53 @@ class UsersTable extends React.Component {
       isOpen: false,
       className: "tableUsersHide"
     };
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.deleteUsersList = this.deleteUsersList.bind(this);
-    this.handleDisplaying = this.handleDisplaying.bind(this);
   }
 
   componentDidMount() {
     this.props.getUsers();
   }
 
-  handleCheckboxChange(e) {
+  handleCheckboxChange = e => {
     const checked = this.state.checked;
-    let index;
     if (e.target.checked) {
       checked.push(e.target.value);
     } else {
-      index = checked.indexOf(e.target.value);
-      checked.splice(index, 1);
+      checked.pop(e.target.value);
     }
     this.setState({ checked: checked });
-  }
+  };
 
-  deleteUsersList() {
-    this.props.deleteUsers();
-  }
+  deleteUsersList = () => {
+    if (this.state.checked.length > 0) {
+      this.props.deleteUsers(this.state.checked);
+      this.props.getUsers();
+    }
+  };
 
-  handleDisplaying() {
-    this.setState({isOpen: !this.state.isOpen});
-    this.state.isOpen ? this.setState({className: "tableUsersHide"}) : this.setState({className: "tableUsersShow"});
-  }
+  setAdmin = e => {
+    if (this.state.checked.length > 0) {
+      const value = e.target.value === "true" ? true : false;
+      this.props.modifyUsers(value, this.state.checked);
+      // this.props.getUsers();
+      // this.forceUpdate();
+    }
+  };
+
+  handleDisplaying = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+    this.state.isOpen
+      ? this.setState({ className: "tableUsersHide" })
+      : this.setState({ className: "tableUsersShow" });
+  };
 
   render() {
     const { users } = this.props.users;
-    // console.log(localStorage.get  Item("token"));
     const table = (
       <div className={"tableWithUsers " + this.state.className}>
         <div className="tableControls">
           <button onClick={this.deleteUsersList}>Delete</button>
-          <button>Appoint admin</button>
-          <button>Remove admin</button>
+          <button onClick={this.setAdmin} value={true}>Appoint admin</button>
+          <button onClick={this.setAdmin} value={false}>Remove admin</button>
         </div>
         <table className="table">
           <thead className="thead-dark">
@@ -86,7 +94,9 @@ class UsersTable extends React.Component {
     return (
       <div className="usersTable">
         <h1>Users Table</h1>
-        <button className="showHideUsertable" onClick={this.handleDisplaying}>Show Users</button>
+        <button className="showHideUsertable" onClick={this.handleDisplaying}>
+          Show Users
+        </button>
         {users ? table : ""}
       </div>
     );
@@ -97,4 +107,4 @@ const mapStateToProps = state => ({
   users: state.user
 });
 
-export default connect(mapStateToProps, { getUsers, deleteUsers })(UsersTable);
+export default connect(mapStateToProps, { getUsers, deleteUsers, modifyUsers })(UsersTable);
