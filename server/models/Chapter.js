@@ -10,10 +10,14 @@ const ChaptrerSchema = new Schema({
     type: String,
     required: true
   },
-  index: {
-    type: Number,
+  text: {
+    type: String,
     required: true
   },
+  // index: {
+  //   type: Number,
+  //   required: true
+  // },
   likesFromID: {
     type: String,
     required: true

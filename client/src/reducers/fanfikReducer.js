@@ -1,7 +1,8 @@
-import { CREATE_FANFIK_SUCCESS, GET_FANFIKS } from "../actions/types";
+import { CREATE_FANFIK_SUCCESS, GET_FANFIKS, GET_CHAPTERS } from "../actions/types";
 
 const initialState = {
-  fanfik: []
+  fanfik: [],
+  chapters: []
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +13,11 @@ export default (state = initialState, action) => {
         ...state,
         fanfik: action.payload
       };
+      case GET_CHAPTERS:
+        return {
+          ...state,
+          chapters: action.payload
+        };
     default:
       return state;
   }

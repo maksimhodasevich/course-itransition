@@ -16,5 +16,4 @@ export const REMOVE_ADMIN = "REMOVE_ADMIN";
 
 export const CREATE_FANFIK_SUCCESS = "CREATE_FANFIK_SUCCESS";
 export const GET_FANFIKS = "GET_FANFIKS";
-
-
+export const GET_CHAPTERS = "GET_CHAPTERS";

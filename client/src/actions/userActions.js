@@ -29,7 +29,6 @@ export const modifyUsers = (adminValue, checkedUsers) => (dispatch, getState) =>
     value: adminValue,
     users: checkedUsers
   });
-  // console.log(body);
   axios
     .put("/api/users", body, tokenConfig(getState))
     .then((res) => {

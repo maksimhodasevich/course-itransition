@@ -2,26 +2,21 @@ import axios from "axios";
 import { GET_FANFIKS } from "../actions/types";
 import { returnErrors } from "./errorActions";
 
-export const createFanfik = ({
-  userName,
-  userID,
-  fanfikName,
-  description,
-  gener,
-  tags
-}) => (dispatch, getState) => {
+export const createFanfik = (fanfik) => (dispatch, getState) => {
+  const { userName, userID, fanfikName, description, gener, tags, chapters } = fanfik;
   const body = JSON.stringify({
     userName,
     userID,
     fanfikName,
     description,
     gener,
-    tags
+    tags,
+    chapters
   });
-
   axios
     .post("/api/fanfiks", body, tokenConfig(getState))
     .then(res => {
+      console.log(res.data);
       dispatch({
         type: GET_FANFIKS,
         payload: res.data
@@ -30,13 +25,13 @@ export const createFanfik = ({
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
+
 };
 
 export const getFanfik = () => (dispatch, getState) => {
   axios
     .get("/api/fanfiks", tokenConfig(getState))
     .then(res => {
-      // console.log(res.data);
       dispatch({
         type: GET_FANFIKS,
         payload: res.data

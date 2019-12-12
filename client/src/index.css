@@ -148,3 +148,26 @@
 .fanfiksSection {
   padding: 10px 0;
 }
+.creatFanfikModal {
+  max-width: 100%;
+  width: 80%;
+}
+.checkboxesTags {
+  margin-left: 20px;
+}
+.chapterSection textarea {
+  width: 98%;
+  margin: 1%;
+  min-height: 150px;
+}
+.chapterCreator input {
+  margin-left: 5px;
+}
+.chapterCreator input,
+.chapterSection textarea {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 5px;
+}
+.chapterCreator {
+  margin: 15px 0;
+}

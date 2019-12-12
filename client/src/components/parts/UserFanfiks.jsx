@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getFanfik } from "../../actions/fanfikAction";
 
+
 class UserFanfiks extends React.Component {
   fanfiks() {
     const allFanfiks = this.props.fanfiks.filter(fanfik => fanfik.userID === this.props.isAuth.user._id);   

@@ -6,10 +6,6 @@ const FanfikSchema = new Schema({
     type: String,
     required: true
   },
-  userName: {
-    type: String,
-    required: true
-  },
   fanfikName: {
     type: String,
     required: true
@@ -23,7 +19,7 @@ const FanfikSchema = new Schema({
     required: true
   },
   tags: {
-    type: Array
+    type: Array,
   },
   rating: {
     type: Number,
