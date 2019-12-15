@@ -17,6 +17,8 @@ class Home extends React.Component {
           <p>Tags: {fanfik.tags.join(", ")}</p>
           <p>Rating: {fanfik.rating}</p>
           <button className="btn btn-primary">Read</button>
+          <button className="btn btn-primary m-1">Edit</button>
+          <button className="btn btn-primary m-1">Delete</button>
         </div>
       </div>
     ));

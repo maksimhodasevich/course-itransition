@@ -14,17 +14,17 @@ const ChaptrerSchema = new Schema({
     type: String,
     required: true
   },
-  // index: {
-  //   type: Number,
-  //   required: true
-  // },
+  markdown: {
+    type: String
+  },
   likesFromID: {
-    type: String,
-    required: true
+    type: Array,
   },
   images: {
-    type: String,
-    required: true
+    type: Array,
+  },
+  createDate: {
+    type: String
   }
 });
 

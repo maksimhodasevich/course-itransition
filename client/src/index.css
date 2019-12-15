@@ -151,6 +151,7 @@
 .creatFanfikModal {
   max-width: 100%;
   width: 80%;
+  word-wrap: break-word;
 }
 .checkboxesTags {
   margin-left: 20px;
@@ -170,4 +171,18 @@
 }
 .chapterCreator {
   margin: 15px 0;
+}
+.dropzone {
+  margin: 15px;
+  height: 75px;
+  background: #0000001f;
+  border: 3px dashed grey;
+  border-radius: 5px;
+  text-align: center;
+}
+.dropzone:focus {
+  outline: none;
+}
+.dropzone p {
+  vertical-align: middle;
 }

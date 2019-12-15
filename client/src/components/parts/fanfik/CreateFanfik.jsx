@@ -20,7 +20,7 @@ class CreateFanfik extends React.Component {
     this.state = {
       checked: [],
       modal: false,
-      className: "createFanfikHide",
+      // className: "createFanfikHide",
       userName: "",
       creatorID: "",
       fanfikName: "",
@@ -33,8 +33,8 @@ class CreateFanfik extends React.Component {
 
   componentDidMount() {
     this.props.getFanfik();
-    const { name, _id } = this.props.user;
     setTimeout(() => {
+      const { name, _id } = this.props.user;
       this.setState({ userName: name });
       this.setState({ creatorID: _id });
     }, 100);

@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import UsersTable from "../parts/UsersTable";
-import CreateFanfik from "../parts/createFanfik/CreateFanfik";
-import UserFanfiks from "../parts/UserFanfiks";
+import CreateFanfik from "../parts/fanfik/CreateFanfik";
+import UserFanfiks from "../parts/fanfik/UserFanfiks";
 
 import store from "../../store";
 import { loadUser } from "../../actions/authActions";
