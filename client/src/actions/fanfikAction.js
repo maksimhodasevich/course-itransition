@@ -60,6 +60,18 @@ export const closeFanfik = () => {
   };
 };
 
+export const deleteFanfik = id => (dispatch, getState) => {
+  axios
+  .delete(`/api/fanfiks/fanfik${id}`, tokenConfig(getState))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    });
+};
+
+
+
+
+
 export const tokenConfig = getState => {
   const token = getState().auth.token;
   const config = {

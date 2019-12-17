@@ -12,7 +12,7 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import ErrorP from "./pages/Error";
 
-import "./../index.css";
+import "./../style/index.css";
 
 class App extends React.Component {
   componentDidMount() {

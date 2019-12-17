@@ -5,16 +5,21 @@ class CreateChapter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chapters: []
+      chapters: [],
+      chapterImages: []
     };
   }
 
   submitChapter = () => {
-    const { chapterName, chapterMarkdown } = this.state;
-    const chapters = [...this.state.chapters, { chapterName, chapterMarkdown }];
+    const { chapterName, chapterMarkdown, chapterImages } = this.state;
+    let count = chapterImages.length;
+    const chapters = [...this.state.chapters, { chapterName, chapterMarkdown, chapterImages, chapterImagesCount: count }];
     this.setState({ chapters: chapters }, () => {
       this.props.createChapter(this.state.chapters);
     });
+    this.setState({ chapterImages: [] });
+    this.setState({ chapterImagesCount: 0 })
+
   };
 
   onChangeInput = e => {
@@ -25,12 +30,21 @@ class CreateChapter extends React.Component {
     this.setState({ chapterMarkdown: html });
   };
 
+  getUploadParams = ({ file }) => {
+    let chapterImagesArr = this.state.chapterImages;
+    chapterImagesArr.push(file);
+    // console.log(chapterImagesArr);
+    this.setState({ chapterImages: chapterImagesArr })
+    return { url: 'https://httpbin.org/post' };
+  }
+
   chapters() {
     return this.state.chapters.map((chapter, i) => (
       <ChapterInput
         key={i + 1}
         onChangeInput={this.onChangeInput}
         handleEditorChange={this.handleEditorChange}
+        getUploadParams={this.getUploadParams}
       />
     ));
   }
@@ -42,6 +56,7 @@ class CreateChapter extends React.Component {
           key={1}
           onChangeInput={this.onChangeInput}
           handleEditorChange={this.handleEditorChange}
+          getUploadParams={this.getUploadParams}
         />
         {this.chapters()}
         <input

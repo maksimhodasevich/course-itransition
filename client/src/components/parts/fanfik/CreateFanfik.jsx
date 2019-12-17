@@ -74,7 +74,8 @@ class CreateFanfik extends React.Component {
       tags,
       chapters
     };
-    this.props.createFanfik(newFanfik, chapters);
+    // console.log(newFanfik.chapters);
+    this.props.createFanfik(newFanfik);
     this.toggle();
   };
 
