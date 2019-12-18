@@ -2,49 +2,33 @@ import React from "react";
 import { connect } from "react-redux";
 
 import UsersTable from "../parts/UsersTable";
+import ProfileInfo from '../parts/ProfileInfo';
 import CreateFanfik from "../parts/fanfik/CreateFanfik";
-import UserFanfiks from "../parts/fanfik/UserFanfiks";
 
-import store from "../../store";
+import FanfiksList from "../parts/fanfik/FanfiksList";
+
 import { loadUser } from "../../actions/authActions";
+import { getFanfik } from "../../actions/fanfikAction";
 
 class Profile extends React.Component {
   componentDidMount() {
-    store.dispatch(loadUser());
+    this.props.loadUser();
+    this.props.getFanfik();
   }
+
   render() {
     const { isAuth, user } = this.props;
-    const profileInfo = (
-      <>
-        <div className="profileInfo">
-          <h4>User info: </h4>
-          <p>
-            <span>ID</span>: {user ? `${user._id}` : ""}
-          </p>
-          <p>
-            <span>name</span>: {user ? `${user.name}` : ""}
-          </p>
-          <p>
-            <span>email</span>: {user ? `${user.email}` : ""}
-          </p>
-          <p>
-            <span>admin</span> : {user ? `${user.admin}` : ""}
-          </p>
-        </div>
-      </>
-    );
     return (
-      <>
-        <section className="profile">
-          {isAuth ? profileInfo : ""}
-          {user ? user.admin ? <UsersTable /> : "" : ""}
-
-          <div className="fanfiksSection">
+      <div className="profile-page">
+        <div className="profile-top-row">
+          <div className="col-md-5 col-sm-12">
+            {isAuth ? <ProfileInfo user={user} /> : ""}
             <CreateFanfik />
-            <UserFanfiks />
           </div>
-        </section>
-      </>
+          {user ? user.admin ? <UsersTable /> : "" : ""}
+        </div>
+        <FanfiksList show={"user"} />
+      </div>
     );
   }
 }
@@ -54,4 +38,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, { getFanfik, loadUser })(Profile);

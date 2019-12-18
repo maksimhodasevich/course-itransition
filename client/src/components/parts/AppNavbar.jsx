@@ -19,16 +19,28 @@ class AppNavbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      theme: "light"
     };
-    this.toggler = this.toggler.bind(this);
   }
 
-  toggler() {
+  toggler = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
+
+  switchTheme = () => {
+    if (this.state.theme === "light") {
+      this.setState({ theme: "dark" }, () => {
+        this.props.switchTheme(this.state.theme);
+      });
+    } else if (this.state.theme === "dark") {
+      this.setState({ theme: "light" }, () => {
+        this.props.switchTheme(this.state.theme);
+      });
+    }
+  };
 
   render() {
     const { isAuth } = this.props.auth;
@@ -59,6 +71,10 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark light expand="md">
           <Container>
+            <label className="switch">
+              <input type="checkbox" onClick={this.switchTheme} />
+              <span className="slider"></span>
+            </label>
             <NavbarBrand href="/">Fanfiks</NavbarBrand>
             <NavbarToggler onClick={this.toggler} />
             <Collapse isOpen={this.state.isOpen} navbar>

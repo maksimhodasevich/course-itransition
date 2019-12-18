@@ -15,15 +15,25 @@ import ErrorP from "./pages/Error";
 import "./../style/index.css";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: "light"
+    };
+  }
   componentDidMount() {
     store.dispatch(loadUser());
+  }
+
+  switchTheme = (value) => {
+    this.setState({ theme: value })
   }
 
   render() {
     const { isAuth } = this.props.auth;
     return (
-      <div className="App">
-        <AppNavbar />
+      <div className={"App " + this.state.theme}>
+        <AppNavbar switchTheme={this.switchTheme} />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />

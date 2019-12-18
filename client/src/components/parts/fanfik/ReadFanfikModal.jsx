@@ -4,8 +4,6 @@ import ReactHtmlParser from 'react-html-parser';
 class ReadFanfikModal extends React.Component {
   render() {
     const { readContent } = this.props;
-    // console.log(this.props.readContent);
-    // console.log(readContent);
     return (
         <>
         <h1 className="fanfikTitle">{readContent.fanfikName}</h1>

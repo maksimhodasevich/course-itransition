@@ -33,7 +33,8 @@ router.post("/", auth, (req, res) => {
     fanfikName,
     description,
     gener,
-    tags
+    tags,
+    createDate: new Date()
   });
 
 

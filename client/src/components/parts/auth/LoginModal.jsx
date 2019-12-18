@@ -27,19 +27,15 @@ class LoginModal extends React.Component {
     };
   }
 
-  //поменять эту функцию на что-то
   componentDidUpdate(prevProps) {
     const { error, isAuth } = this.props;
     if (error !== prevProps.error) {
-      //check for register error
       if (error.id === "LOGIN_FAIL") {
         this.setState({ message: error.message.msg });
       } else {
         this.setState({ message: null });
       }
     }
-
-    // if auth close modal
     if (this.state.modal) {
       if (isAuth) {
         this.toggle();
@@ -60,54 +56,29 @@ class LoginModal extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-
     const { email, password } = this.state;
-
-    const user = {
-      email,
-      password
-    };
-
-    //attempt to login
+    const user = { email, password };
     this.props.login(user);
   };
 
   render() {
     return (
       <div>
-        <NavLink onClick={this.toggle} href="#">
-          Login
-        </NavLink>
-
+        <NavLink onClick={this.toggle} href="#">Login</NavLink>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
-          <ModalBody>
-            {this.state.message ? (
-              <Alert color="danger">{this.state.message}</Alert>
-            ) : null}
+          <ModalBody>{this.state.message 
+            ? <Alert color="danger">{this.state.message}</Alert>
+            : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="email">Email</Label>
-                <Input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="email"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
-                <Label for="password">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="password"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
-                  Login
-                </Button>
+                <Label>Email</Label>
+                <Input type="email" name="email" placeholder="email"
+                       onChange={this.onChange} className="mb-3"/>
+                <Label>Password</Label>
+                <Input type="password" name="password" placeholder="password"
+                        onChange={this.onChange}  className="mb-3"/>
+                <Button block>Login</Button>
               </FormGroup>
             </Form>
           </ModalBody>

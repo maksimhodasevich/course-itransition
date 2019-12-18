@@ -1,12 +1,11 @@
 import React from "react";
-import { deleteFanfik } from '../../../actions/fanfikAction';
+import { deleteFanfik, getFanfik } from '../../../actions/fanfikAction';
 import { connect } from "react-redux";
 
-
 class FanfikCard extends React.Component {
-
   deleteFanfik = (e) => {
-    this.props.deleteFanfik(e.target.value)
+    this.props.deleteFanfik(e.target.value);
+    this.props.getFanfik();
   }
 
   render() {
@@ -18,7 +17,7 @@ class FanfikCard extends React.Component {
       </>
     );
     return (
-      <div className="card" key={fanfik._id}>
+      <div className="card col-12">
         <div className="card-body">
           <h5 className="card-title">Name: {fanfik.fanfikName}</h5>
           <p className="card-text">Discription: {fanfik.description}</p>
@@ -39,4 +38,4 @@ const mapStateToProps = state => ({
   readContent: state.fanfik
 });
 
-export default connect(mapStateToProps, { deleteFanfik })(FanfikCard);
+export default connect(mapStateToProps, { deleteFanfik, getFanfik })(FanfikCard);

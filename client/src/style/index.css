@@ -20,16 +20,26 @@
 .login {
   text-align: center;
 }
-.profileInfo {
-  padding: 30px 0;
-  margin: 0 auto;
-  width: 300px;
+.usersTable{
+  padding: 30px 15px;
 }
-.profileInfo span {
+.profile-info {
+  padding: 30px 0px;
+
+}
+.profile-top-row {
+  display: flex;
+  flex-direction: row;
+}
+.profile-top-row .nav-link {
+  padding-bottom: 0;
+}
+.profile-info span {
   font-weight: bold;
 }
 .usersTable {
   overflow: scroll;
+  display: inline-block;
 }
 .errorPage {
   text-align: center;
@@ -73,30 +83,44 @@
   color: white;
   border: none;
 }
+.fanfiks {
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
 .searchResults,
-.mainBooks,
-.userFanfiksList {
-  /* display: flex;
-  padding: 20px;
-  justify-content: space-around; */
+.fanfiksList {
   margin-top: 50px;
 }
-.fanfCard {
-  margin: 0 4% 25px;
+.card {
+  margin: 25px 0;
   display: inline-block;
 }
 .card-body {
   text-align: left;
 }
-/* .card {
-  display: inline-block;
-  margin: 0 4% 25px;
-} */
 .card img {
   height: 200px;
 }
+.home-page {
+  padding: 20px;
+}
+.sort {
+  margin-top: 20px;
+}
+.sort select {
+  border: 1px solid black;
+}
+.sort span {
+  margin: 0 7px;
+}
+.sort button:focus {
+  outline: none;
+}
+.mainBooks .fanfiksList {
+  margin-top: 10px;
+}
 .tagsCloud {
-  margin: 20px;
   padding: 20px;
   background: yellowgreen;
   border-radius: 15px;
@@ -116,7 +140,8 @@
 }
 .tableControls button, 
 .showHideUsertable ,
-.createwFanfik {
+.createwFanfik,
+.tableControls .btn {
   background: grey;
   color: white;
   border: none;
@@ -129,7 +154,8 @@
 }
 .tableControls button:focus,
 .showHideUsertable:focus,
-.createwFanfik:focus {
+.createwFanfik:focus,
+.tableControls .btn:focus {
   outline: none;
 }
 .tableControls button:active,
@@ -148,35 +174,37 @@
 .createFanfikShow {
   display: block
 }
-.profile {
+.profile-page {
   margin: 10px 30px;
+}
+.profile-page h4 {
+  padding-bottom: 5px;
+  border-bottom: 1px solid grey;
 }
 .fanfiksSection {
   padding: 10px 0;
 }
-.creatFanfikModal {
+.fanfik-modal {
   max-width: 100%;
-  width: 80%;
+  width: 85%;
+  margin: 30px auto;
   word-wrap: break-word;
 }
-.checkboxesTags {
-  margin-left: 20px;
+.fanfik-modal label {
+  margin: 10px 0;
 }
-.chapterSection textarea {
-  width: 98%;
-  margin: 1%;
-  min-height: 150px;
+.checkboxesTags {
+  margin-left: 35px !important;
 }
 .chapterCreator input {
   margin-left: 5px;
 }
-.chapterCreator input,
-.chapterSection textarea {
+.chapterCreator input {
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 5px;
 }
 .chapterCreator {
-  margin: 15px 0;
+  margin: 20px 0;
 }
 .dropzone {
   margin: 15px;
@@ -192,16 +220,36 @@
 .dropzone p {
   vertical-align: middle;
 }
-.readFanfikModal {
-  max-width: 100%;
+.chapterSection input {
+  padding: .375rem .75rem;
+}
+.dzu-inputLabelWithFiles {
+  color: black;
+  margin: 10px 20px !important;
+  background-color: white;
+}
+.dzu-dropzone {
+  min-height: 0px;;
+}
+.chapterSection .dzu-dropzone {
+  margin: 10px 0;
+  width: 100%;
+  height: 75px;
+  border: 2px dashed #00000063;
+  background: #8080803d;
+}
+.dzu-inputLabel {
+  color: black;
+}
+.read-fanfik-modal {
   width: 80%;
   word-wrap: break-word;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.readFanfikModal .modal-content {
+.read-fanfik-modal .modal-content {
   background-image: url(../style//images//papaer-background.jpg);
 }
-.readFanfikModal .modal-header {
+.read-fanfik-modal .modal-header {
   border-bottom: none;
   height: 0;
   padding: 0;
@@ -210,14 +258,14 @@
   text-align: center;
   margin-bottom: 30px;
 }
-.readFanfikModal .modal-header .close {
+.read-fanfik-modal .modal-header .close {
   position: absolute;
   top: 0px;
   right: 10px;
   font-size: 50px;
   z-index: 100;
 }
-.readFanfikModal .modal-header .close:focus {
+.read-fanfik-modal .modal-header .close:focus {
   outline: none;
 }
 .fanfikDescription {
@@ -236,13 +284,13 @@
   text-align: justify;
   word-wrap: break-word
 }
-.readFanfikModal h1::selection,
-.readFanfikModal h4::selection,
-.readFanfikModal h6::selection,
-.readFanfikModal span::selection,
-.readFanfikModal p::selection {
-  color: white; /* Цвет текста */
-  background: #000; /* Цвет фона */
+.read-fanfik-modal h1::selection,
+.read-fanfik-modal h4::selection,
+.read-fanfik-modal h6::selection,
+.read-fanfik-modal span::selection,
+.read-fanfik-modal p::selection {
+  color: white;
+  background: #000;
 }
 .likeButton {
   background: none;
@@ -282,6 +330,109 @@
 .card-body button:hover {
   background: #bf6e6e;
 }
-/* .fanfCard {
-  height: 200px;
-} */
+.leftSideProfile {
+  padding: 0;
+}
+.nav-link{
+  padding: 10px 0px;
+}
+.usersTable .btn-secondary {
+  margin: 10px 0px;
+  padding: .375rem .75rem;
+}
+.custom-html-style p {
+  margin: 0;
+}
+.rc-md-editor .editor-container .sec-html .html-wrap {
+  height: 88px;
+}
+.submitChapter {
+  margin: 10px 5px;
+  padding: 10px;
+}
+.chapterSection {
+  margin: 10px 0;
+}
+
+
+@media screen and (max-width: 844px) {
+  .profile-top-row {
+    flex-wrap: wrap;
+    width: 100% !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.switch {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-block;
+  width: 50px;
+  height: 15px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 10px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 11px;
+  width: 15px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 3px;
+
+}
+
+input:checked + .slider {
+  background-color: black;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px black;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

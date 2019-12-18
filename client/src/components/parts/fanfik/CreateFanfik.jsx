@@ -20,7 +20,6 @@ class CreateFanfik extends React.Component {
     this.state = {
       checked: [],
       modal: false,
-      // className: "createFanfikHide",
       userName: "",
       creatorID: "",
       fanfikName: "",
@@ -74,7 +73,6 @@ class CreateFanfik extends React.Component {
       tags,
       chapters
     };
-    // console.log(newFanfik.chapters);
     this.props.createFanfik(newFanfik);
     this.toggle();
   };
@@ -102,12 +100,12 @@ class CreateFanfik extends React.Component {
     );
     return (
       <>
-        <h1>Fanfiks</h1>
+        <h4>Fanfiks</h4>
         <div>
           <NavLink onClick={this.toggle} href="#">
             <Button>Create fanfik</Button>
           </NavLink>
-          <Modal isOpen={modal} toggle={this.toggle} className="creatFanfikModal">
+          <Modal isOpen={modal} toggle={this.toggle} className="fanfik-modal">
             <ModalHeader toggle={this.toggle}>Create fanfik</ModalHeader>
             <ModalBody>
               {user.admin ? createFanfikFromSomeone : ""}

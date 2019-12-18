@@ -31,13 +31,10 @@ class ChapterInput extends React.Component {
       <div className="chapterSection">
         <label>Chapter name</label>
         <input type="text" name="chapterName" onChange={onChangeInput} />
-
-
         <Dropzone
           getUploadParams={this.props.getUploadParams}
           onChangeStatus={this.props.handleImage}
           // onSubmit={this.props.handleImage}
-          styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
         />
 
 

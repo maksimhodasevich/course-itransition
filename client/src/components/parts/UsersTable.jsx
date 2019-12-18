@@ -8,7 +8,8 @@ class UsersTable extends React.Component {
     this.state = {
       checked: [],
       isOpen: false,
-      className: "tableUsersHide"
+      className: "tableUsersHide",
+      tableText: 'Show users'
     };
   }
 
@@ -37,16 +38,14 @@ class UsersTable extends React.Component {
     if (this.state.checked.length > 0) {
       const value = e.target.value === "true" ? true : false;
       this.props.modifyUsers(value, this.state.checked);
-      // this.props.getUsers();
-      // this.forceUpdate();
     }
   };
 
   handleDisplaying = () => {
     this.setState({ isOpen: !this.state.isOpen });
     this.state.isOpen
-      ? this.setState({ className: "tableUsersHide" })
-      : this.setState({ className: "tableUsersShow" });
+      ? this.setState({ className: "tableUsersHide", tableText: "Show users" })
+      : this.setState({ className: "tableUsersShow", tableText: "Hide users" });
   };
 
   render() {
@@ -92,10 +91,10 @@ class UsersTable extends React.Component {
     );
 
     return (
-      <div className="usersTable">
-        <h1>Users Table</h1>
+      <div className="usersTable col-md-8 col-sm-12">
+        <h4>Users Table</h4>
         <button className="showHideUsertable" onClick={this.handleDisplaying}>
-          Show Users
+            {this.state.tableText}
         </button>
         {users ? table : ""}
       </div>

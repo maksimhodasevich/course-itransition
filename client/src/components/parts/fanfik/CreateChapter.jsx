@@ -13,13 +13,14 @@ class CreateChapter extends React.Component {
   submitChapter = () => {
     const { chapterName, chapterMarkdown, chapterImages } = this.state;
     let count = chapterImages.length;
-    const chapters = [...this.state.chapters, { chapterName, chapterMarkdown, chapterImages, chapterImagesCount: count }];
+    const chapters = [
+      ...this.state.chapters,
+      { chapterName, chapterMarkdown, chapterImages, chapterImagesCount: count }
+    ];
     this.setState({ chapters: chapters }, () => {
       this.props.createChapter(this.state.chapters);
     });
-    this.setState({ chapterImages: [] });
-    this.setState({ chapterImagesCount: 0 })
-
+    this.setState({ chapterImages: [], chapterImagesCount: 0 });
   };
 
   onChangeInput = e => {
@@ -34,9 +35,9 @@ class CreateChapter extends React.Component {
     let chapterImagesArr = this.state.chapterImages;
     chapterImagesArr.push(file);
     // console.log(chapterImagesArr);
-    this.setState({ chapterImages: chapterImagesArr })
-    return { url: 'https://httpbin.org/post' };
-  }
+    this.setState({ chapterImages: chapterImagesArr });
+    return { url: "https://httpbin.org/post" };
+  };
 
   chapters() {
     return this.state.chapters.map((chapter, i) => (
@@ -63,6 +64,7 @@ class CreateChapter extends React.Component {
           type="button"
           value="Submit chapter"
           onClick={this.submitChapter}
+          className="submitChapter"
         />
       </div>
     );

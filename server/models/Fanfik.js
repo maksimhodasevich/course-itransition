@@ -22,6 +22,9 @@ const FanfikSchema = new Schema({
     type: String,
     required: true
   },
+  createDate: {
+    type: String,
+  },
   tags: {
     type: Array,
   },
