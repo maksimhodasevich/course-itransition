@@ -1,48 +1,31 @@
 import React from "react";
+import { connect } from "react-redux";
+import FanfiksList from "../parts/fanfik/FanfiksList";
+import { loadUser } from "../../actions/authActions";
+import { getFanfik } from "../../actions/fanfikAction";
 
 class Search extends React.Component {
+  componentDidMount() {
+    this.props.loadUser();
+    this.props.getFanfik();
+  }
   render() {
     return (
-      <div className="searchPage">
-        <div className="searchLine">
+      <div className="search-page">
+        <h3>Пока выводится тоже самое что и на главной</h3>
+        <div className="search-line">
           <input type="text" placeholder="search request...." />
           <button>Search</button>
         </div>
-        <div className="searchResults col-12">
-          <div className="card col-3">
-            <img src="http://www.thesmallbig.com/css/img/thesmallbig-book-smaller.png" className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Book title</h5>
-              <p className="card-text">
-                Some quick example text to build on the Book title and make up
-                the bulk of the card's content.
-              </p>
-            </div>
-          </div>
-          <div className="card col-3">
-            <img src="http://www.thesmallbig.com/css/img/thesmallbig-book-smaller.png" className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Book title</h5>
-              <p className="card-text">
-                Some quick example text to build on the Book title and make up
-                the bulk of the card's content.
-              </p>
-            </div>
-          </div>
-          <div className="card col-3">
-            <img src="http://www.thesmallbig.com/css/img/thesmallbig-book-smaller.png" className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Book title</h5>
-              <p className="card-text">
-                Some quick example text to build on the Book title and make up
-                the bulk of the card's content.
-              </p>
-            </div>
-          </div>
-        </div>
+        <FanfiksList show={"all"} />
       </div>
     );
   }
 }
 
-export default Search;
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth,
+  user: state.auth.user
+});
+
+export default connect(mapStateToProps, { getFanfik, loadUser })(Search);

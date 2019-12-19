@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUsers, deleteUsers, modifyUsers } from "../../actions/userActions";
+import { NavLink } from "reactstrap";
 
 class UsersTable extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class UsersTable extends React.Component {
       checked: [],
       isOpen: false,
       className: "tableUsersHide",
-      tableText: 'Show users'
+      tableText: "Show users"
     };
   }
 
@@ -50,12 +51,17 @@ class UsersTable extends React.Component {
 
   render() {
     const { users } = this.props.users;
+    const { _id } = this.props.isAuth.user;
     const table = (
       <div className={"tableWithUsers " + this.state.className}>
         <div className="tableControls">
           <button onClick={this.deleteUsersList}>Delete</button>
-          <button onClick={this.setAdmin} value={true}>Appoint admin</button>
-          <button onClick={this.setAdmin} value={false}>Remove admin</button>
+          <button onClick={this.setAdmin} value={true}>
+            Appoint admin
+          </button>
+          <button onClick={this.setAdmin} value={false}>
+            Remove admin
+          </button>
         </div>
         <table className="table">
           <thead className="thead-dark">
@@ -72,11 +78,15 @@ class UsersTable extends React.Component {
             {users.map((user, index) => (
               <tr key={user._id}>
                 <td>
-                  <input
-                    type="checkbox"
-                    value={user._id}
-                    onChange={this.handleCheckboxChange}
-                  />
+                  {!(_id === user._id) ? (
+                    <input
+                      type="checkbox"
+                      value={user._id}
+                      onChange={this.handleCheckboxChange}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </td>
                 <td>{index + 1}</td>
                 <td>{user._id}</td>
@@ -93,9 +103,11 @@ class UsersTable extends React.Component {
     return (
       <div className="usersTable col-md-8 col-sm-12">
         <h4>Users Table</h4>
-        <button className="showHideUsertable" onClick={this.handleDisplaying}>
+        <NavLink onClick={this.toggle} href="#">
+          <button className="showHideUsertable" onClick={this.handleDisplaying}>
             {this.state.tableText}
-        </button>
+          </button>
+        </NavLink>
         {users ? table : ""}
       </div>
     );
@@ -103,7 +115,10 @@ class UsersTable extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.user
+  users: state.user,
+  isAuth: state.auth
 });
 
-export default connect(mapStateToProps, { getUsers, deleteUsers, modifyUsers })(UsersTable);
+export default connect(mapStateToProps, { getUsers, deleteUsers, modifyUsers })(
+  UsersTable
+);

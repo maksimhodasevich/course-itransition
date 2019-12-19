@@ -1,6 +1,85 @@
 .navbar-collapse {
   justify-content: flex-end;
 }
+.light .navbar {
+  background: #343a4059 !important;
+  transition: 0.3s;
+}
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link,
+.home-page,
+.profile-page,
+.sort span,
+.fanfik-сard .card,
+.fanfik-сard .card button,
+.table,
+.profile-top-row button,
+.modal-content,
+.search-line,
+.search-line button,
+.error-page {
+  transition: 0.3s;
+}
+
+.light .navbar-dark .navbar-brand,
+.light .navbar-dark .navbar-nav .nav-link {
+  color: #000000e8;
+}
+.navbar .container {
+  padding-left: 50px;
+}
+.dark .home-page,
+.dark .profile-page,
+.dark .search-page,
+.dark .error-page {
+  background: #000000e6; 
+}
+.dark .sort span {
+  color: white;
+}
+.dark .fanfik-сard .card {
+  background: #6b6b6b;
+  color: white;
+}
+.dark .fanfik-сard .card button {
+  background: white;
+  color: #6b6b6b;
+}
+.dark .profile-top-row {
+  color: white;
+}
+.dark .tableWithUsers .table {
+  color: white;
+}
+.dark .profile-top-row button {
+  background-color: white;
+  color: #6b6b6b;
+}
+.dark .modal-content {
+  background: #6b6b6b;
+  color: white;
+}
+.dark .search-line input {
+  background: #6b6b6b;
+}
+.dark .search-line button {
+  background-color: white;
+  color: #6b6b6b;
+}
+.dark .search-line input::placeholder {
+  color: white;
+}
+
+
+/* .dark .slider:before {
+  transform: translateX(26px);
+}
+.dark .slider {
+  background-color: black;
+} */
+
+
+
 .loginForm {
   margin: 10px;
   display: inline-block;
@@ -41,27 +120,34 @@
   overflow: scroll;
   display: inline-block;
 }
-.errorPage {
+.error-page {
   text-align: center;
 }
-.errorPage h1 {
-  margin-top: 50px;
+.error-page h1 {
+  padding-top: 50px;
   font-size: 80px;
 }
-.errorPage h4 {
+.error-page h4 {
   font-size: 40px;
 }
-.searchLine {
-  width: 50%;
+.dark .error-page {
+  color: white;
+  min-height: 100vh;
+}
+.search-line {
+  width: 95%;
   display: inline-block;
 }
-.searchPage {
+.search-page {
   text-align: center;
 }
-.searchLine {
+.search-page>.col-12 {
+  text-align: left;
+}
+.search-line {
   margin: 50px 0;
 }
-.searchLine input {
+.search-line input {
   border: 1px solid grey;
   width: 80%;
   padding: 10px;
@@ -69,12 +155,12 @@
   border-bottom-left-radius: 7px;
   transition: 0.2s;
 }
-.searchLine input:focus,
-.searchLine button:focus {
+.search-line input:focus,
+.search-line button:focus {
   outline: none;
   transition: 0.2s;
 }
-.searchLine button {
+.search-line button {
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
   width: 20%;
@@ -120,23 +206,26 @@
 .mainBooks .fanfiksList {
   margin-top: 10px;
 }
-.tagsCloud {
+.tags-cloud {
   padding: 20px;
   background: yellowgreen;
   border-radius: 15px;
   word-wrap: break-word;
 }
-.tagsCloud h4 {
+.tags-cloud h4 {
   margin: 0;
   margin-right: 10px;
 }
-.tagsCloud span {
+.tags-cloud span {
   font-size: 1.5rem;
   font-weight: 200;
 }
-.tagsCloud .tag {
+.tags-cloud .tag {
   display: inline;
   margin-right: 10px;
+}
+.dark .tags-cloud {
+  background: orange;
 }
 .tableControls button, 
 .showHideUsertable ,
@@ -147,7 +236,7 @@
   border: none;
   margin-right: 10px;
   border-radius: 5px;
-  padding: 7px;
+  padding: 6px 12px;
   margin-bottom: 10px;
   transition: 0.1s;
   transform: scale(1);
@@ -175,7 +264,8 @@
   display: block
 }
 .profile-page {
-  margin: 10px 30px;
+  padding: 10px 30px;
+  min-height: 100vh;
 }
 .profile-page h4 {
   padding-bottom: 5px;
@@ -413,9 +503,11 @@
   border-radius: 3px;
 
 }
-
+.slider {
+  background: yellowgreen;
+}
 input:checked + .slider {
-  background-color: black;
+  background-color: orange;
 }
 
 input:focus + .slider {

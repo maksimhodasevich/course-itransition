@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 
 import store from "../store";
 import { loadUser } from "../actions/authActions";
+
 import { connect } from "react-redux";
 
 import Home from "./pages/Home";
@@ -18,15 +19,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: "light"
+      theme: sessionStorage.getItem("theme")
     };
   }
+  
   componentDidMount() {
     store.dispatch(loadUser());
   }
 
   switchTheme = (value) => {
-    this.setState({ theme: value })
+    this.setState({ theme: value }, () => {
+      sessionStorage.setItem("theme", this.state.theme);
+    });
   }
 
   render() {
@@ -48,7 +52,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, null)(App);

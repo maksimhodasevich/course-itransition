@@ -22,6 +22,10 @@ const UserSchema = new Schema({
   admin: {
     type: Boolean,
     default: false
+  },
+  theme: {
+    type: String,
+    default: "light"
   }
 });
 

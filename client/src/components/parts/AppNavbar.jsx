@@ -20,7 +20,7 @@ class AppNavbar extends Component {
     super(props);
     this.state = {
       isOpen: false,
-      theme: "light"
+      theme: sessionStorage.getItem("theme")
     };
   }
 
@@ -31,11 +31,13 @@ class AppNavbar extends Component {
   };
 
   switchTheme = () => {
+    console.log(this.state.theme);
+
     if (this.state.theme === "light") {
       this.setState({ theme: "dark" }, () => {
         this.props.switchTheme(this.state.theme);
       });
-    } else if (this.state.theme === "dark") {
+    } else {
       this.setState({ theme: "light" }, () => {
         this.props.switchTheme(this.state.theme);
       });
@@ -44,7 +46,6 @@ class AppNavbar extends Component {
 
   render() {
     const { isAuth } = this.props.auth;
-
     const guestLinks = (
       <>
         <NavItem>

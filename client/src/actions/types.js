@@ -17,3 +17,5 @@ export const REMOVE_ADMIN = "REMOVE_ADMIN";
 export const GET_FANFIKS = "GET_FANFIKS";
 export const GET_FANFIK_FOR_READ = "GET_FANFIK_FOR_READ";
 export const CLEAR_READ_FANFIK = "CLEAR_READ_FANFIK";
+
+export const SWITCH_THEME = "SWITCH_THEME";

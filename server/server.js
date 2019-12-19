@@ -23,6 +23,8 @@ app.use("/api/reg", reg);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
 app.use("/api/fanfiks", fanfiks);
+app.use("/api/fanfiks", fanfiks);
+
 
 const port = 5000;
 

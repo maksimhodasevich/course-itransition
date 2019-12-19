@@ -9,7 +9,8 @@ import {
   Form,
   FormGroup,
   NavLink,
-  Alert
+  Alert,
+  ModalFooter
 } from "reactstrap";
 
 import { connect } from "react-redux";
@@ -21,6 +22,7 @@ class RegisterModal extends React.Component {
     super(props);
     this.state = {
       modal: false,
+      nastedModal: false,
       name: "",
       email: "",
       password: "",
@@ -50,7 +52,7 @@ class RegisterModal extends React.Component {
       modal: !this.state.modal
     });
   };
-
+  
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -64,6 +66,7 @@ class RegisterModal extends React.Component {
       password: password
     };
     this.props.register(newUser);
+    this.toggle();
   };
 
   render() {
@@ -80,13 +83,13 @@ class RegisterModal extends React.Component {
               <FormGroup>
                 <Label>name</Label>
                 <Input type="text" name="name" placeholder="name"
-                       onChange={this.onChange} className="mb-3"/>
+                       onChange={this.onChange} className="mb-3" required/>
                 <Label>Email</Label>
                 <Input type="email" name="email" placeholder="email"
-                       className="mb-3" onChange={this.onChange}/>
+                       className="mb-3" onChange={this.onChange} required/>
                 <Label>Password</Label>
                 <Input type="password" name="password" placeholder="password"
-                       className="mb-3" onChange={this.onChange}/>
+                       className="mb-3" onChange={this.onChange} required/>
                 <Button block>Register</Button>
               </FormGroup>
             </Form>

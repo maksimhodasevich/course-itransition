@@ -3,7 +3,7 @@ import React from "react";
 class TagsCloud extends React.Component {
   render() {
     return (
-        <div className="tagsCloud col-10 offset-1">
+        <div className="tags-cloud col-10 offset-1">
           <h4>Tags Cloud:</h4>
           <span className="tag">#Anthology</span>
           <span className="tag">#Classic</span>
