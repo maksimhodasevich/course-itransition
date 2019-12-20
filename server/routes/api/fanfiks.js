@@ -193,6 +193,15 @@ router.get("/read:id", (req, res) => {
     });
 });
 
+router.get("/chapters", (req, res) => {
+  Chapter.find()
+    .then(chapters => {
+      res.send(chapters);
+    })
+});
+
+
+
 router.delete("/fanfik:id", auth, (req, res) => {
   const id = req.params.id;
   Fanfik.findByIdAndDelete({_id: id})

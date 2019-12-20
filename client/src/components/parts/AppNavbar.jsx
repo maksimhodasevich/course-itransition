@@ -70,7 +70,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark light expand="md">
+        <Navbar expand="md">
           <Container>
             <label className="switch">
               <input type="checkbox" onClick={this.switchTheme} />

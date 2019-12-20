@@ -19,3 +19,6 @@ export const GET_FANFIK_FOR_READ = "GET_FANFIK_FOR_READ";
 export const CLEAR_READ_FANFIK = "CLEAR_READ_FANFIK";
 
 export const SWITCH_THEME = "SWITCH_THEME";
+export const GET_CHAPTERS = "GET_CHAPTERS";
+
+

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getFanfik, getFanfikToRead, closeFanfik } from "../../../actions/fanfikAction";
+import { getFanfik, getFanfikToRead, closeFanfik, getChapters } from "../../../actions/fanfikAction";
 
 import FanfikCard from "./FanfikCard";
 import ReadFanfikModal from "./ReadFanfikModal";
@@ -15,6 +15,10 @@ class FanfiksList extends React.Component {
       sortValue: null,
       modal: false
     };
+  }
+
+  componentDidMount() {
+    this.props.getChapters();
   }
 
   toggle = e => {
@@ -50,12 +54,37 @@ class FanfiksList extends React.Component {
   render() {
     const { modal, sortValue } = this.state;
     const { isAuth, fanfiks, readContent } = this.props;
-    let sortedFanfiks;
+    let sortedFanfiks = fanfiks;
     if (this.props.show === "all") {
       sortedFanfiks = fanfiks;
-    } else {
+    } else if (this.props.show === "user"){
       sortedFanfiks = fanfiks.filter(fanfik => fanfik.userID === isAuth.user._id);
-    }
+    } else if (this.props.show === "search") {
+      let query;
+      this.props.searchQuery ? query = this.props.searchQuery.trim() : query = "";
+      sortedFanfiks = fanfiks.filter(fanfik => {
+        let match;
+        let data;
+        let chapters = this.props.chapters.filter(chapter => chapter.bookID === fanfik._id);
+
+        let matches = 0;
+        chapters.map(chapterOfBook => {
+          const { name, text } = chapterOfBook;
+          data = `${name} ${text}`;
+          match = data.toLocaleLowerCase().match(query);
+          if(match) {
+            matches++;
+          }
+        })
+        if(matches > 0) {
+          return true
+        }
+        const { userName, fanfikName, description, gener, comments } = fanfik;
+        data = `${userName} ${fanfikName} ${description} ${gener} ${comments.text}`;
+        match = data.toLowerCase().match(query);
+        return match;
+      });
+    };
     switch (sortValue) {
       case "new-first":
         sortedFanfiks.sort((a, b) => {
@@ -113,11 +142,13 @@ class FanfiksList extends React.Component {
 const mapStateToProps = state => ({
   isAuth: state.auth,
   fanfiks: state.fanfik.fanfik,
-  readContent: state.fanfik
+  readContent: state.fanfik,
+  chapters: state.fanfik.chapters
 });
 
 export default connect(mapStateToProps, {
   getFanfik,
   getFanfikToRead,
-  closeFanfik
+  closeFanfik,
+  getChapters
 })(FanfiksList);

@@ -10,6 +10,7 @@ class Home extends React.Component {
   }
 
   render() {
+    // console.log(this.props.user, this.props.isAuth);
     return (
       <div className="home-page">
         <TagsCloud />
@@ -19,4 +20,9 @@ class Home extends React.Component {
   }
 }
 
-export default connect(null, { getFanfik })(Home);
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuth,
+  user: state.auth.user
+});
+
+export default connect(mapStateToProps, { getFanfik })(Home);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_FANFIKS, GET_FANFIK_FOR_READ, CLEAR_READ_FANFIK } from "../actions/types";
+import { GET_FANFIKS, GET_FANFIK_FOR_READ, CLEAR_READ_FANFIK, GET_CHAPTERS } from "../actions/types";
 import { returnErrors } from "./errorActions";
 
 export const createFanfik = fanfik => (dispatch, getState) => {
@@ -32,6 +32,20 @@ export const getFanfik = () => (dispatch, getState) => {
     .then(res => {
       dispatch({
         type: GET_FANFIKS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    });
+};
+
+export const getChapters = () => (dispatch, getState) => {
+  axios
+    .get("/api/fanfiks/chapters")
+    .then(res => {
+      dispatch({
+        type: GET_CHAPTERS,
         payload: res.data
       });
     })

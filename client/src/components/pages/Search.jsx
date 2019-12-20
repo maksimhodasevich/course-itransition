@@ -5,19 +5,28 @@ import { loadUser } from "../../actions/authActions";
 import { getFanfik } from "../../actions/fanfikAction";
 
 class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchQuery: null
+    };
+  }
   componentDidMount() {
     this.props.loadUser();
     this.props.getFanfik();
+  }
+  handleInput = (e) => {
+    this.setState({searchQuery: e.target.value})
   }
   render() {
     return (
       <div className="search-page">
         <h3>Пока выводится тоже самое что и на главной</h3>
         <div className="search-line">
-          <input type="text" placeholder="search request...." />
+          <input type="text" onChange={this.handleInput} placeholder="search request...." />
           <button>Search</button>
         </div>
-        <FanfiksList show={"all"} />
+        <FanfiksList show={"search"} searchQuery={this.state.searchQuery} />
       </div>
     );
   }
