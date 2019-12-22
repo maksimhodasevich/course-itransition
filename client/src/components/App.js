@@ -1,30 +1,29 @@
 import React from "react";
-import AppNavbar from "./parts/AppNavbar";
-import { BrowserRouter, Switch } from "react-router-dom";
-import { Route } from "react-router-dom";
-
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import store from "../store";
+import { connect } from "react-redux";
 import { loadUser } from "../actions/authActions";
 
-import { connect } from "react-redux";
-
+import AppNavbar from "./parts/AppNavbar";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import ErrorP from "./pages/Error";
-
 import "./../style/index.css";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: sessionStorage.getItem("theme")
+      theme: "light"
     };
   }
   
-  componentDidMount() {
+  componentWillMount() {
     store.dispatch(loadUser());
+    if(sessionStorage.getItem("theme")) {
+      this.setState({theme: sessionStorage.getItem("theme")});
+    }
   }
 
   switchTheme = (value) => {
@@ -37,7 +36,7 @@ class App extends React.Component {
     const { isAuth } = this.props.auth;
     return (
       <div className={"App " + this.state.theme}>
-        <AppNavbar switchTheme={this.switchTheme} />
+        <AppNavbar switchTheme={this.switchTheme} theme={this.state.theme} />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -52,7 +51,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, null)(App);

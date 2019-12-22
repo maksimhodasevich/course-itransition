@@ -26,11 +26,10 @@ const FanfikSchema = new Schema({
     type: String,
   },
   tags: {
-    type: Array,
+    type: Array
   },
   rating: {
-    type: Number,
-    default: 0
+    type: Array
   },
   comments: {
     type: Array

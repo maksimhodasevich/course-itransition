@@ -9,12 +9,11 @@ import {
   Form,
   FormGroup,
   NavLink,
-  Alert,
-  ModalFooter
+  Alert
 } from "reactstrap";
 
 import { connect } from "react-redux";
-import { register } from "../../../actions/authActions";
+import { register, registerSuccess } from "../../../actions/authActions";
 import { clearErrors } from "../../../actions/errorActions";
 
 class RegisterModal extends React.Component {
@@ -31,7 +30,7 @@ class RegisterModal extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { error, isAuth } = this.props;
+    const { error, regSuccess } = this.props;
     if (error !== prevProps.error) {
       if (error.id === "REGISTER_FAIL") {
         this.setState({ message: error.message.msg });
@@ -39,19 +38,33 @@ class RegisterModal extends React.Component {
         this.setState({ message: null });
       }
     }
-    if (this.state.modal) {
-      if (isAuth) {
-        this.toggle();
+    if (regSuccess) {
+      if(!this.state.nastedModal && this.state.modal) {
+        this.toggleNasted();
       }
     }
   }
-
+  
   toggle = () => {
     this.props.clearErrors();
     this.setState({
       modal: !this.state.modal
     });
   };
+
+  toggleNasted = () => {
+    this.props.registerSuccess();
+    this.setState({
+      nastedModal: !this.state.nastedModal
+    });
+    setTimeout(() => {
+      this.toggleAll();
+    }, 5000);
+  };
+  
+  toggleAll = () => {
+    this.setState({modal: !this.state.modal, nastedModal: !this.state.nastedModal});
+  }
   
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -66,7 +79,6 @@ class RegisterModal extends React.Component {
       password: password
     };
     this.props.register(newUser);
-    this.toggle();
   };
 
   render() {
@@ -93,6 +105,11 @@ class RegisterModal extends React.Component {
                 <Button block>Register</Button>
               </FormGroup>
             </Form>
+            <Modal isOpen={this.state.nastedModal} toggle={this.toggleNasted}>
+              <ModalBody>
+                <h1>Submit your registration with link on your email:)<br />Happy reading!</h1>
+              </ModalBody>
+            </Modal>
           </ModalBody>
         </Modal>
       </div>
@@ -101,9 +118,8 @@ class RegisterModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuth: state.auth.isAuth,
   error: state.error,
-  wholeState: state
+  regSuccess: state.auth.regSuccess
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(RegisterModal);
+export default connect(mapStateToProps, { register, clearErrors, registerSuccess })(RegisterModal);

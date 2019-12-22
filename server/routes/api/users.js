@@ -29,21 +29,21 @@ router.delete("/", (req, res) => {
 });
 
 // @route   PUT api/users
-// @desc    Appoint/remove admin
+// @desc    Appoint/remove admin // block/unblock user
 // @access  Private
 router.put("/", auth, (req, res) => {
-  const value = req.body.value;
-  const IDs = req.body.users;
-
-  let promises = IDs.map(async userID => {
-    return User.update({ _id: userID }, { $set: { admin: value } }).then(() => {
-      return userID;
-    });
+  const { value, checkedUsers, method } = req.body;
+  let promises = checkedUsers.map(async userID => {
+    if (method === "setAdmin") {
+      return User.updateOne({ _id: userID }, { $set: { admin: value } })
+              .then(() => userID);
+    } else if (method === "blockUser") {
+      return User.updateOne({ _id: userID }, { $set: { blocked: value } })
+              .then(() => userID);
+    }
   });
   Promise.all(promises).then(() => {
-    User.find()
-    .select("-password")
-    .then(users => res.json(users));
+    User.find().then(users => res.json(users));
     return;
   });
 });

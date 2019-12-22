@@ -8,26 +8,23 @@ const nodemailer = require("nodemailer");
 const User = require("../../models/User");
 
 sendEmail = (newUser, password) => {
-  // console.log(newUser);
+  let mailOptions = {
+    from: "maksim.hodasevich@gmail.com",
+    to: newUser.email,
+    subject: "Fanfik webpage registration",
+    html: `<a href="http://localhost:5000/api/reg/email?regdate=${newUser.regdate}&admin=${newUser.admin}&theme=${newUser.theme}
+           &_id=${newUser._id}&name=${newUser.name}&email=${newUser.email}&password=${password}&token=">Link to register on fanfiks' page!!!</a>`
+  };
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
     requireTLS: true,
     auth: {
-      user: "maksim.hodasevich@gmail.com",
-      pass: "Hkooc4321"
+      user: config.googleCredentials.email,
+      pass: config.googleCredentials.password
     }
   });
-
-  let mailOptions = {
-    from: "maksim.hodasevich@gmail.com",
-    to: newUser.email,
-    subject: "Fanfik webpage registration",
-    html: `<a href="http://localhost:5000/api/reg/email?regdate=${newUser.regdate}&admin=${newUser.admin}&theme=${newUser.theme}
-           &_id=${newUser._id}&name=${newUser.name}&email=${newUser.email}&password=${password}">Link to reg</a>`
-  };
-  
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       return console.log(error.message);
@@ -36,7 +33,7 @@ sendEmail = (newUser, password) => {
 };
 
 // @route   POST api/users
-// @desc    Register new user
+// @desc    Send registration link to email
 // @access  Public
 router.post("/", (req, res) => {
   const { name, email, password } = req.body;
@@ -62,6 +59,9 @@ router.post("/", (req, res) => {
   });
 });
 
+// @route   get api/users/email/?params=...
+// @desc    Catch registration link click and register user
+// @access  Public
 router.get("/email", (req, res) => {
   const { name, email, password } = req.query;
   const newUser = new User({
@@ -76,7 +76,7 @@ router.get("/email", (req, res) => {
       { expiresIn: 3600 },
       (err, token) => {
         if (err) throw err;
-        res.send(`<h1>Now you can <a href="${"http://localhost:3000"}">log in</a></h1>`);
+        res.redirect(`${"http://localhost:3000"}`);
       }
     );
   });

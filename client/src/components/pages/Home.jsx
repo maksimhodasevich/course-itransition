@@ -10,7 +10,6 @@ class Home extends React.Component {
   }
 
   render() {
-    // console.log(this.props.user, this.props.isAuth);
     return (
       <div className="home-page">
         <TagsCloud />

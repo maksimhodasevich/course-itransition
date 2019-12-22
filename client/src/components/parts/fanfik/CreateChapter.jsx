@@ -34,7 +34,6 @@ class CreateChapter extends React.Component {
   getUploadParams = ({ file }) => {
     let chapterImagesArr = this.state.chapterImages;
     chapterImagesArr.push(file);
-    // console.log(chapterImagesArr);
     this.setState({ chapterImages: chapterImagesArr });
     return { url: "https://httpbin.org/post" };
   };

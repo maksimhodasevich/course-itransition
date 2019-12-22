@@ -25,7 +25,6 @@ app.use("/api/users", users);
 app.use("/api/fanfiks", fanfiks);
 app.use("/api/fanfiks", fanfiks);
 
-
 const port = 5000;
 
 app.listen(port, () => console.log(`Server started on ${port}`));

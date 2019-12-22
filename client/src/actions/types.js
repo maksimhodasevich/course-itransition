@@ -4,8 +4,11 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
+export const REGISTER_PROCESS = "REGISTER_PROCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
+
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
@@ -19,6 +22,5 @@ export const GET_FANFIK_FOR_READ = "GET_FANFIK_FOR_READ";
 export const CLEAR_READ_FANFIK = "CLEAR_READ_FANFIK";
 
 export const SWITCH_THEME = "SWITCH_THEME";
+
 export const GET_CHAPTERS = "GET_CHAPTERS";
-
-

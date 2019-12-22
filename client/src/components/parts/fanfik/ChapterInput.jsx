@@ -1,10 +1,8 @@
 import React from "react";
 import MdEditor from "react-markdown-editor-lite";
 import MarkdownIt from "markdown-it";
-import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from "react-dropzone-uploader";
-// import axios from "axios";
-
+import 'react-dropzone-uploader/dist/styles.css'
 
 class ChapterInput extends React.Component {
   mdParser = null;
@@ -24,7 +22,6 @@ class ChapterInput extends React.Component {
   //   allFiles.forEach(f => f.remove())
   // }
 
-
   render() {
     const { onChangeInput, handleEditorChange } = this.props;
     return (
@@ -36,8 +33,6 @@ class ChapterInput extends React.Component {
           onChangeStatus={this.props.handleImage}
           // onSubmit={this.props.handleImage}
         />
-
-
         <MdEditor
           value={""}
           renderHTML={text => this.mdParser.render(text)}

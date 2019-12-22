@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { connect } from "react-redux";
+
+import RegisterModal from "./auth/RegisterModal";
+import LoginModal from "./auth/LoginModal";
+import LogoutModal from "./auth/LogoutModal";
 import {
   Collapse,
   Navbar,
@@ -10,17 +14,14 @@ import {
   NavLink,
   Container
 } from "reactstrap";
-import RegisterModal from "./auth/RegisterModal";
-import LoginModal from "./auth/LoginModal";
-import LogoutModal from "./auth/LogoutModal";
-import { connect } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class AppNavbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
-      theme: sessionStorage.getItem("theme")
+      theme: this.props.theme
     };
   }
 
@@ -31,14 +32,12 @@ class AppNavbar extends Component {
   };
 
   switchTheme = () => {
-    console.log(this.state.theme);
-
     if (this.state.theme === "light") {
       this.setState({ theme: "dark" }, () => {
         this.props.switchTheme(this.state.theme);
       });
-    } else {
-      this.setState({ theme: "light" }, () => {
+    } else if (this.state.theme === "dark") {
+        this.setState({ theme: "light" }, () => {
         this.props.switchTheme(this.state.theme);
       });
     }
@@ -56,7 +55,6 @@ class AppNavbar extends Component {
         </NavItem>
       </>
     );
-
     let authLink = (
       <>
         <NavItem>
@@ -67,7 +65,6 @@ class AppNavbar extends Component {
         </NavItem>
       </>
     );
-
     return (
       <div>
         <Navbar expand="md">

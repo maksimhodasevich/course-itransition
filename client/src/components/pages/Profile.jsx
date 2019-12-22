@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import UsersTable from "../parts/UsersTable";
-import ProfileInfo from '../parts/ProfileInfo';
+import UsersTable from "../parts/users/UsersTable";
+import ProfileInfo from "../parts/ProfileInfo";
 import CreateFanfik from "../parts/fanfik/CreateFanfik";
 
 import FanfiksList from "../parts/fanfik/FanfiksList";
@@ -21,12 +21,10 @@ class Profile extends React.Component {
     return (
       <div className="profile-page">
         <div className="profile-top-row">
-          <div className="col-md-5 col-sm-12">
-            {isAuth ? <ProfileInfo user={user} /> : ""}
-            <CreateFanfik />
-          </div>
+          {isAuth ? <ProfileInfo user={user} /> : ""}
           {user ? user.admin ? <UsersTable /> : "" : ""}
         </div>
+        <CreateFanfik />
         <FanfiksList show={"user"} />
       </div>
     );

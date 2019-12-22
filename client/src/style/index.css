@@ -60,7 +60,7 @@
 .dark .profile-top-row {
   color: white;
 }
-.dark .tableWithUsers .table {
+.dark .table-with-users .table {
   color: white;
 }
 .dark .profile-top-row button {
@@ -81,14 +81,6 @@
 .dark .search-line input::placeholder {
   color: white;
 }
-
-/* .dark .slider:before {
-  transform: translateX(26px);
-}
-.dark .slider {
-  background-color: black;
-} */
-
 .loginForm {
   margin: 10px;
   display: inline-block;
@@ -108,8 +100,12 @@
 .login {
   text-align: center;
 }
-.usersTable {
+.users-table {
   padding: 30px 15px;
+  max-height: 520px;
+}
+.medals {
+  margin-top: 40px;
 }
 .profile-info {
   padding: 30px 0px;
@@ -124,7 +120,7 @@
 .profile-info span {
   font-weight: bold;
 }
-.usersTable {
+.users-table {
   overflow: scroll;
   display: inline-block;
 }
@@ -160,8 +156,7 @@
   border: 1px solid grey;
   width: 80%;
   padding: 10px;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+  border-radius: 7px;
   transition: 0.2s;
 }
 .search-line input:focus,
@@ -237,10 +232,10 @@
 .dark .tags-cloud {
   background: orange;
 }
-.tableControls button,
-.showHideUsertable,
+.table-controls button,
+.show-hide-user-table,
 .createwFanfik,
-.tableControls .btn {
+.table-controls .btn {
   background: grey;
   color: white;
   border: none;
@@ -251,27 +246,40 @@
   transition: 0.1s;
   transform: scale(1);
 }
-.tableControls button:focus,
-.showHideUsertable:focus,
+.table-controls button:focus,
+.show-hide-user-table:focus,
 .createwFanfik:focus,
-.tableControls .btn:focus {
+.table-controls .btn:focus {
   outline: none;
 }
-.tableControls button:active,
-.showHideUsertable:active,
+.table-controls button:active,
+.show-hide-user-table:active,
 .createwFanfik:active {
   transform: scale(1.1);
   transition: 0.1s;
 }
-.tableUsersHide,
+.table-controls button {
+  margin: 10px 10px 20px;
+}
+.table-controls button:first-child {
+  margin-left: 0;
+}
+.table-users-hide,
 .table,
 .createFanfikHide {
   display: none;
 }
-.tableUsersShow,
+.table-users-show,
 .table,
 .createFanfikShow {
   display: block;
+}
+.create-fanfik {
+  text-align: center;
+}
+.create-fanfik button{
+  width: 50%;
+  font-size: 20px;
 }
 .profile-page {
   padding: 10px 30px;
@@ -334,7 +342,7 @@
 .chapterSection .dzu-dropzone {
   margin: 10px 0;
   width: 100%;
-  height: 75px;
+  height: 150px;
   border: 2px dashed #00000063;
   background: #8080803d;
 }
@@ -436,7 +444,7 @@
 .nav-link {
   padding: 10px 0px;
 }
-.usersTable .btn-secondary {
+.users-table .btn-secondary {
   margin: 10px 0px;
   padding: 0.375rem 0.75rem;
 }
@@ -452,13 +460,6 @@
 }
 .chapterSection {
   margin: 10px 0;
-}
-
-@media screen and (max-width: 844px) {
-  .profile-top-row {
-    flex-wrap: wrap;
-    width: 100% !important;
-  }
 }
 
 .switch {
@@ -516,12 +517,63 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
+}
+.comments {
+  background-color: white;
+  padding: 10px;
+}
+.comments h4 {
+  text-align: center;
+}
+.comment label {
+  width: 100%;
+}
+.comment input {
+  width: 70%;
+  padding: 5px 10px;
+}
+.comment button {
+  width: 30%;
+  padding: 5px 10px;
+}
+.star-ratings {
+  display: flex !important;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.star-ratings svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+.star-ratings .star-container {
+  padding: 0 !important;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 844px) {
+  .profile-top-row {
+    flex-wrap: wrap;
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 524px) {
+  .users-table button {
+    width: 44%;
+    margin: 10px 3% !important;
+  }
+  .users-table {
+    padding: 0;
+  }
 }

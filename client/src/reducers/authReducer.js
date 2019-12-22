@@ -3,6 +3,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
+  REGISTER_PROCESS,
+  REGISTER_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_FAIL
@@ -12,7 +14,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuth: null,
   isLoading: false,
-  user: null
+  user: null,
+  regSuccess: false
 };
 
 export default (state = initialState, action) => {
@@ -29,13 +32,24 @@ export default (state = initialState, action) => {
         isLoading: false,
         user: action.payload
       };
+    case REGISTER_PROCESS:
+      return {
+        ...state,
+        regSuccess: true
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        regSuccess: false
+      };
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
         isAuth: true,
-        isLoading: false
+        isLoading: false,
+        regSuccess: false
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:

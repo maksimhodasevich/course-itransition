@@ -26,7 +26,8 @@ class CreateFanfik extends React.Component {
       description: "",
       gener: "fantasy",
       tags: [],
-      chapters: []
+      chapters: [],
+      nastedModal: false
     };
   }
 
@@ -74,7 +75,7 @@ class CreateFanfik extends React.Component {
       chapters
     };
     this.props.createFanfik(newFanfik);
-    this.toggle();
+    this.toggleNasted();
   };
 
   toggle = () => {
@@ -83,6 +84,22 @@ class CreateFanfik extends React.Component {
     });
   };
 
+  toggleNasted = () => {
+    this.setState({
+      nastedModal: !this.state.nastedModal
+    });
+    setTimeout(() => {
+      this.setState({
+        nastedModal: !this.state.nastedModal,
+        modal: !this.state.modal
+      });
+    }, 2000);
+  };
+
+  toggleAll = () => {
+    this.setState({modal: !this.state.modal, nastedModal: !this.state.nastedModal});
+  }
+
   createChapter = chapters => {
     this.setState({chapters: chapters});
   }
@@ -90,7 +107,6 @@ class CreateFanfik extends React.Component {
   render() {
     const { user } = this.props;
     const { creatorID, modal } = this.state;
-
     const createFanfikFromSomeone = (
       <>
         <Label>Creator of fanfik(default = you)</Label> <br />
@@ -102,7 +118,7 @@ class CreateFanfik extends React.Component {
       <>
         <h4>Fanfiks</h4>
         <div>
-          <NavLink onClick={this.toggle} href="#">
+          <NavLink onClick={this.toggle} href="#" className="create-fanfik">
             <Button>Create fanfik</Button>
           </NavLink>
           <Modal isOpen={modal} toggle={this.toggle} className="fanfik-modal">
@@ -134,6 +150,11 @@ class CreateFanfik extends React.Component {
                   <Button block>Create fanfik</Button>
                 </FormGroup>
               </Form>
+              <Modal isOpen={this.state.nastedModal} toggle={this.toggleNasted}>
+                <ModalBody>
+                  <h1>You successfully created fanfik, congratulations!</h1>
+                </ModalBody>
+              </Modal>
             </ModalBody>
           </Modal>
         </div>

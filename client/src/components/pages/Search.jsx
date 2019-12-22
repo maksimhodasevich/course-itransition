@@ -21,10 +21,8 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-page">
-        <h3>Пока выводится тоже самое что и на главной</h3>
         <div className="search-line">
           <input type="text" onChange={this.handleInput} placeholder="search request...." />
-          <button>Search</button>
         </div>
         <FanfiksList show={"search"} searchQuery={this.state.searchQuery} />
       </div>

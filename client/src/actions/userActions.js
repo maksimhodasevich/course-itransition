@@ -3,8 +3,7 @@ import { GET_USERS } from "../actions/types";
 import { returnErrors } from "./errorActions";
 
 export const getUsers = () => (dispatch, getState) => {
-  axios
-    .get("/api/users", tokenConfig(getState))
+  axios.get("/api/users", tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_USERS,
@@ -17,20 +16,19 @@ export const getUsers = () => (dispatch, getState) => {
 };
 
 export const deleteUsers = checkedUsers => (dispatch, getState) => {
-  axios
-    .delete("/api/users", { params: {ids: checkedUsers}}, tokenConfig(getState))
+  axios.delete("/api/users", { params: {ids: checkedUsers}}, tokenConfig(getState))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
-export const modifyUsers = (adminValue, checkedUsers) => (dispatch, getState) => {
+export const modifyUsers = (value, checkedUsers, method) => (dispatch, getState) => {
   const body = JSON.stringify({
-    value: adminValue,
-    users: checkedUsers
+    value,
+    checkedUsers,
+    method
   });
-  axios
-    .put("/api/users", body, tokenConfig(getState))
+  axios.put("/api/users", body, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_USERS,

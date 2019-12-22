@@ -23,6 +23,10 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false
   },
+  blocked: {
+    type: Boolean,
+    default: false
+  },
   theme: {
     type: String,
     default: "light"
