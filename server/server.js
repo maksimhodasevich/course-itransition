@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
@@ -6,8 +7,6 @@ const reg = require("./routes/api/reg");
 const auth = require("./routes/api/auth");
 const users = require("./routes/api/users");
 const fanfiks = require("./routes/api/fanfiks");
-
-const app = express();
 
 app.use(bodyParser.json());
 

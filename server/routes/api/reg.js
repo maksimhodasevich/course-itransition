@@ -70,11 +70,7 @@ router.get("/email", (req, res) => {
     password
   });
   newUser.save().then(user => {
-    jwt.sign(
-      { id: user.id },
-      config.jwtSecret,
-      { expiresIn: 3600 },
-      (err, token) => {
+    jwt.sign({ id: user.id }, config.jwtSecret, { expiresIn: 3600 }, (err, token) => {
         if (err) throw err;
         res.redirect(`${"http://localhost:3000"}`);
       }

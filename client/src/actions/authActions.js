@@ -16,14 +16,13 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
   axios.get("/api/auth/user", tokenConfig(getState))
     .then(res => {
-      if(res.data && !res.data.blocked){
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data
-      })
-    }
-  }
-    )
+      if (res.data && !res.data.blocked) {
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data
+        });
+      }
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
@@ -61,19 +60,19 @@ export const register = ({ name, email, password }) => dispatch => {
     password: password
   });
   axios.post("/api/reg", body, tokenConfig())
-  .then(() =>
-    dispatch({
-      type: REGISTER_PROCESS
-    })
-  )
-  .catch(err => {
-    dispatch(
-      returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
-    );
-    dispatch({
-      type: REGISTER_FAIL
+    .then(() =>
+      dispatch({
+        type: REGISTER_PROCESS
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+      );
+      dispatch({
+        type: REGISTER_FAIL
+      });
     });
-  });
 };
 
 export const registerSuccess = () => {
@@ -90,7 +89,7 @@ export const logout = () => {
 
 export const tokenConfig = getState => {
   let token = false;
-  if(getState) {
+  if (getState) {
     token = getState().auth.token;
   }
   const config = {

@@ -107,7 +107,7 @@ class RegisterModal extends React.Component {
             </Form>
             <Modal isOpen={this.state.nastedModal} toggle={this.toggleNasted}>
               <ModalBody>
-                <h1>Submit your registration with link on your email:)<br />Happy reading!</h1>
+                <h3>Submit your registration with link on your email</h3>
               </ModalBody>
             </Modal>
           </ModalBody>

@@ -5,7 +5,6 @@ import { getFanfik, getFanfikToRead, closeFanfik, getChapters, changeRating } fr
 import FanfikCard from "./FanfikCard";
 import ReadFanfikModal from "./ReadFanfikModal";
 import Sort from "./Sort";
-
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 class FanfiksList extends React.Component {
@@ -32,7 +31,7 @@ class FanfiksList extends React.Component {
     }
   };
 
-  sort = e => {
+  handleSortInput = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -62,8 +61,8 @@ class FanfiksList extends React.Component {
     return fanfiks.filter(fanfik => {
       let match;
       let dataToCompare;
-      let chapters = this.props.chapters.filter(chapter => chapter.bookID === fanfik._id);
       let chapterMatches = 0;
+      let chapters = this.props.chapters.filter(chapter => chapter.bookID === fanfik._id);
       chapters.map(chapterOfBook => {
         const { name, text } = chapterOfBook;
         dataToCompare = `${name} ${text}`;
@@ -82,13 +81,7 @@ class FanfiksList extends React.Component {
     });
   }
 
-  render() {
-    const { modal, sort, filter } = this.state;
-    const { isAuth, readContent } = this.props;
-    const fanfiks = this.props.fanfiks.sort((a, b) => {
-      return this.sortFanfiksAlgh(a, b, "createDate", -1);
-    });
-    const modalMarkdown = readContent.readFanfikInfo;
+  displayFanfiks = (sort, filter, fanfiks, isAuth) => {
     let sortedFanfiks = fanfiks;
     if (this.props.show === "all") {
       sortedFanfiks = fanfiks;
@@ -108,18 +101,6 @@ class FanfiksList extends React.Component {
           return this.sortFanfiksAlgh(a, b, "createDate", 1);
         });
         break;
-      // case "popular-first":
-      //   sortedFanfiks.sort((a, b) => {
-      //     return this.sortFanfiksAlgh(a, b, "rating", -1);
-      //   });
-      //   console.log(sortedFanfiks);
-      //   break;
-      // case "no-popular-first":
-      //   sortedFanfiks.sort((a, b) => {
-      //     return this.sortFanfiksAlgh(a, b, "rating", 1);
-      //   });
-      //   console.log(sortedFanfiks);
-      //   break;
       default:
         break;
     }
@@ -130,6 +111,17 @@ class FanfiksList extends React.Component {
         return fanfik.gener === filter;
       }
     });
+    return sortedFanfiks;
+  }
+
+  render() {
+    const { modal, sort, filter } = this.state;
+    const { isAuth, readContent } = this.props;
+    const fanfiks = this.props.fanfiks.sort((a, b) => {
+      return this.sortFanfiksAlgh(a, b, "createDate", -1);
+    });
+    const modalMarkdown = readContent.readFanfikInfo;
+    const sortedFanfiks = this.displayFanfiks(sort, filter, fanfiks, isAuth);
     const userFanfiks = sortedFanfiks.map((fanfik, index) => (
       <div key={index} className="fanfik-сard col-md-3 col-sm-12">
         {isAuth.user
@@ -150,7 +142,7 @@ class FanfiksList extends React.Component {
     ));
     return (
       <div className="col-12">
-        <Sort sort={this.sort} />
+        <Sort sort={this.handleSortInput} />
         <div className="fanfiks col-12">{userFanfiks}</div>
         <Modal isOpen={modal} toggle={this.toggle} className="read-fanfik-modal fanfik-modal">
           <ModalHeader toggle={this.toggle}></ModalHeader>

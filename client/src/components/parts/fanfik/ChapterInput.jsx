@@ -27,7 +27,7 @@ class ChapterInput extends React.Component {
     return (
       <div className="chapterSection">
         <label>Chapter name</label>
-        <input type="text" name="chapterName" onChange={onChangeInput} />
+        <input type="text" name="chapterName" onChange={onChangeInput} defaultValue="Глава" />
         <Dropzone
           getUploadParams={this.props.getUploadParams}
           onChangeStatus={this.props.handleImage}

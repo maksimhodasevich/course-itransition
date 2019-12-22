@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import { loadUser } from "../../actions/authActions";
+import { getFanfik } from "../../actions/fanfikAction";
 
 import UsersTable from "../parts/users/UsersTable";
 import ProfileInfo from "../parts/ProfileInfo";
 import CreateFanfik from "../parts/fanfik/CreateFanfik";
-
 import FanfiksList from "../parts/fanfik/FanfiksList";
-
-import { loadUser } from "../../actions/authActions";
-import { getFanfik } from "../../actions/fanfikAction";
 
 class Profile extends React.Component {
   componentDidMount() {

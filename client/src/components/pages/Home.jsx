@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getFanfik } from "../../actions/fanfikAction";
+
 import FanfiksList from "../parts/fanfik/FanfiksList";
 import TagsCloud from "../parts/TagsCloud";
 

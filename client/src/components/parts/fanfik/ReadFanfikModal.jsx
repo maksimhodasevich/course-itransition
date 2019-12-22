@@ -21,7 +21,7 @@ class ReadFanfikModal extends React.Component {
           </div>
           );
         })}
-        {/* <button onClick={this.jsPdfGenerator}>Downbload PDF</button> */}
+        {/* <button onClick={}>Downbload PDF</button> */}
         <div className="comments">
           <h4>Comments</h4>
           {readContent.comments.map((item, i) => {

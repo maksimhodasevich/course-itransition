@@ -1,8 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class ProfileInfo extends React.Component {
   render() {
     const { user } = this.props;
+    let fanfiks = [];
+    if(fanfiks) {
+      fanfiks = this.props.fanfiks.filter(fanfik => fanfik.userID === user._id);
+    }
     return (
       <div className="profile-info col-md-4">
         <h4>User info</h4>
@@ -12,13 +17,17 @@ class ProfileInfo extends React.Component {
         <p><span>admin</span> : {user ? `${user.admin}` : ""}</p>
         <div className="medals">
           <h4>Medals</h4>
-          <p>Medal 1</p>
-          <p>Medal 2</p>
-          <p>Medal 3</p>
+          <p>Create 1 fanfik: {fanfiks.length >= 1 ? "achived" : 'blocked'}</p>
+          <p>Create 5 fanfik: {fanfiks.length >= 5 ? "achived" : 'blocked'}</p>
+          <p>Create 10 fanfik: {fanfiks.length >= 10 ? "achived" : 'blocked'}</p>
         </div>
       </div>
     );
   }
 }
 
-export default ProfileInfo;
+const mapStateToProps = state => ({
+  fanfiks: state.fanfik.fanfik
+});
+
+export default connect(mapStateToProps, null)(ProfileInfo);

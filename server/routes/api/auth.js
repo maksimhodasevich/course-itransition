@@ -15,15 +15,22 @@ router.post("/", (req, res) => {
     return res.status(400).json({ msg: "Enter all fields" });
   }
   User.findOne({ email }).then(user => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
-    else if (user.blocked) return res.status(400).json({ msg: "You are blocked" });
-    bcrypt.compare(password, user.password).then(isMatch => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid password" });
-      jwt.sign({ id: user.id }, config.jwtSecret, { expiresIn: 3600 }, (err, token) => {
-        if (err) throw err;
-        res.json({token, user});
+    if (!user){
+      return res.status(400).json({ msg: "User does not exist" });
+    }
+    else if (user.blocked){
+      return res.status(400).json({ msg: "You are blocked" });
+    }
+    bcrypt.compare(password, user.password)
+      .then(isMatch => {
+        if (!isMatch){
+          return res.status(400).json({ msg: "Invalid password" });
+        }
+        jwt.sign({ id: user.id }, config.jwtSecret, { expiresIn: 3600 }, (err, token) => {
+          if (err) throw err;
+          res.json({token, user});
+        });
       });
-    });
   });
 });
 

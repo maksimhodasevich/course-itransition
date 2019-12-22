@@ -2,7 +2,7 @@ import axios from "axios";
 import { GET_USERS } from "../actions/types";
 import { returnErrors } from "./errorActions";
 
-export const getUsers = () => (dispatch, getState) => {
+export const getUsers = () => ( dispatch, getState ) => {
   axios.get("/api/users", tokenConfig(getState))
     .then(res => {
       dispatch({
@@ -15,14 +15,14 @@ export const getUsers = () => (dispatch, getState) => {
     });
 };
 
-export const deleteUsers = checkedUsers => (dispatch, getState) => {
+export const deleteUsers = checkedUsers => ( dispatch, getState ) => {
   axios.delete("/api/users", { params: {ids: checkedUsers}}, tokenConfig(getState))
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
-export const modifyUsers = (value, checkedUsers, method) => (dispatch, getState) => {
+export const modifyUsers = (value, checkedUsers, method) => ( dispatch, getState ) => {
   const body = JSON.stringify({
     value,
     checkedUsers,

@@ -1,8 +1,13 @@
 import axios from "axios";
-import { GET_FANFIKS, GET_FANFIK_FOR_READ, CLEAR_READ_FANFIK, GET_CHAPTERS } from "../actions/types";
+import {
+  GET_FANFIKS,
+  GET_FANFIK_FOR_READ,
+  CLEAR_READ_FANFIK,
+  GET_CHAPTERS
+} from "../actions/types";
 import { returnErrors } from "./errorActions";
 
-export const createFanfik = fanfik => (dispatch, getState) => {
+export const createFanfik = fanfik => ( dispatch, getState ) => {
   const { userName, userID, fanfikName, description, gener, tags, chapters } = fanfik;
   const body = JSON.stringify({
     userName,
@@ -25,7 +30,7 @@ export const createFanfik = fanfik => (dispatch, getState) => {
     });
 };
 
-export const getFanfik = () => (dispatch, getState) => {
+export const getFanfik = () => ( dispatch, getState ) => {
   axios.get("/api/fanfiks", tokenConfig(getState))
     .then(res => {
       dispatch({
@@ -38,7 +43,7 @@ export const getFanfik = () => (dispatch, getState) => {
     });
 };
 
-export const getChapters = () => (dispatch) => {
+export const getChapters = () => dispatch => {
   axios.get("/api/fanfiks/chapters")
     .then(res => {
       dispatch({
@@ -51,7 +56,7 @@ export const getChapters = () => (dispatch) => {
     });
 };
 
-export const getFanfikToRead = id => (dispatch, getState) => {
+export const getFanfikToRead = id => ( dispatch, getState ) => {
   axios.get(`/api/fanfiks/read?id=${id}`, tokenConfig(getState))
     .then(res => {
       dispatch({
@@ -64,21 +69,23 @@ export const getFanfikToRead = id => (dispatch, getState) => {
     });
 };
 
-export const changeRating = (rating, bookID, userID) => (dispatch, getState) => {
+export const changeRating = (rating, bookID, userID) => ( dispatch, getState ) => {
   const body = JSON.stringify({
     rating,
     bookID,
     userID
   });
   axios.put("/api/fanfiks/rating", body, tokenConfig(getState))
-    .then((res) => {
+    .then(res => {
       dispatch({
         type: GET_FANFIKS,
         payload: res.data
       });
     })
     .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status, "RATE_FAIL"));
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "RATE_FAIL")
+      );
     });
 };
 

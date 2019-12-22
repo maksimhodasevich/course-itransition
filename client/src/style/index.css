@@ -277,7 +277,7 @@
 .create-fanfik {
   text-align: center;
 }
-.create-fanfik button{
+.create-fanfik button {
   width: 50%;
   font-size: 20px;
 }
@@ -507,11 +507,9 @@
 input:checked + .slider {
   background-color: orange;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px black;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -553,13 +551,6 @@ input:checked + .slider:before {
 .star-ratings .star-container {
   padding: 0 !important;
 }
-
-
-
-
-
-
-
 
 @media screen and (max-width: 844px) {
   .profile-top-row {

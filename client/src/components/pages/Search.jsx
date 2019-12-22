@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import FanfiksList from "../parts/fanfik/FanfiksList";
 import { loadUser } from "../../actions/authActions";
 import { getFanfik } from "../../actions/fanfikAction";
+
+import FanfiksList from "../parts/fanfik/FanfiksList";
 
 class Search extends React.Component {
   constructor(props) {

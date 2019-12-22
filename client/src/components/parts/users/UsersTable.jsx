@@ -21,7 +21,7 @@ class UsersTable extends React.Component {
     this.props.getUsers();
   }
 
-  handleCheckboxChange = e => {
+  handleCheckbox = e => {
     const checked = this.state.checked;
     if (e.target.checked) {
       checked.push(e.target.value);
@@ -74,7 +74,7 @@ class UsersTable extends React.Component {
               Remove admin
             </button>
           </div>
-          {users ? <Table users={users} _id={_id} handleCheckboxChange={this.handleCheckboxChange} /> : ""}
+          {users ? <Table users={users} _id={_id} handleCheckbox={this.handleCheckbox} /> : ""}
         </div>
       </div>
     );

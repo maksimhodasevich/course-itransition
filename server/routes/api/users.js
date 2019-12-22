@@ -14,7 +14,7 @@ router.get("/", auth, (req, res) => {
 
 // @route   DELETE api/users
 // @desc    Delete checked users (for admin)
-// @access  Private (for admin)
+// @access  For admin only
 router.delete("/", (req, res) => {
   const IDs = req.query.ids;
   let promises = IDs.map(async userID => {

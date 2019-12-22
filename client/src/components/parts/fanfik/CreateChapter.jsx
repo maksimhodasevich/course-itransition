@@ -31,12 +31,12 @@ class CreateChapter extends React.Component {
     this.setState({ chapterMarkdown: html });
   };
 
-  getUploadParams = ({ file }) => {
-    let chapterImagesArr = this.state.chapterImages;
-    chapterImagesArr.push(file);
-    this.setState({ chapterImages: chapterImagesArr });
-    return { url: "https://httpbin.org/post" };
-  };
+  // getUploadParams = ({ file }) => {
+  //   let chapterImagesArr = this.state.chapterImages;
+  //   chapterImagesArr.push(file);
+  //   this.setState({ chapterImages: chapterImagesArr });
+  //   return { url: "https://httpbin.org/post" };
+  // };
 
   chapters() {
     return this.state.chapters.map((chapter, i) => (

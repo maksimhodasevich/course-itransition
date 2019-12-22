@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import RegisterModal from "./auth/RegisterModal";
@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-class AppNavbar extends Component {
+class AppNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
