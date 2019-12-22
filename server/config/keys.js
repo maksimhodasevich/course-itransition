@@ -1,7 +1,7 @@
 module.exports = {
-  jwtSecret: "jwtSecret22000020",
+  jwtSecret: "your secret key to lock password",
   googleCredentials: {
-    email: "maksim.hodasevich@gmail.com",
-    password: "Hkooc4321"
+    email: "email",
+    password: "password"
   }
 };
