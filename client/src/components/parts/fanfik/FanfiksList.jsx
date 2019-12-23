@@ -57,7 +57,7 @@ class FanfiksList extends React.Component {
 
   sortFanfiksResult = (fanfiks) => {
     let query;
-    this.props.searchQuery ? query = this.props.searchQuery.trim() : query = "";
+    this.props.searchQuery ? query = this.props.searchQuery.trim() : query = "⁂";
     return fanfiks.filter(fanfik => {
       let match;
       let dataToCompare;

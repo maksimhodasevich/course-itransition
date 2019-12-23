@@ -37,6 +37,9 @@
 .navbar .container {
   padding-left: 50px;
 }
+.navbar-toggler {
+  background-color: yellowgreen;
+}
 .navbar {
   background-color: #6b6b6b;
 }
@@ -452,7 +455,7 @@
   margin: 0;
 }
 .rc-md-editor .editor-container .sec-html .html-wrap {
-  height: 88px;
+  height: 200px;
 }
 .submitChapter {
   margin: 10px 5px;

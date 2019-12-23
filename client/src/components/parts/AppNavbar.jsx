@@ -74,7 +74,9 @@ class AppNavbar extends React.Component {
               <span className="slider"></span>
             </label>
             <NavbarBrand href="/">Fanfiks</NavbarBrand>
-            <NavbarToggler onClick={this.toggler} />
+            <NavbarToggler onClick={this.toggler} className="mr-2" />
+
+            {/* <NavbarToggler /> */}
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav navbar>
                 <NavItem>

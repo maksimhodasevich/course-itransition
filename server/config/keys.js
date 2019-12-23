@@ -1,7 +1,7 @@
 module.exports = {
-  jwtSecret: "your secret key to lock password",
+  jwtSecret: "jwtSecret22000020",
   googleCredentials: {
-    email: "email",
-    password: "password"
+    email: "your email to send reg link",
+    password: "password for email from which you will send reg link"
   }
 };
